@@ -15,3 +15,7 @@ export interface IUserRegister {
   email: string;
   password: string;
 }
+export interface IUpdateProfile {
+  name?: string;
+  description?: string;
+}
