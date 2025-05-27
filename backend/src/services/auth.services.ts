@@ -1,8 +1,7 @@
-import { PrismaClient } from '../../generated/prisma';
 import { hash, verify } from 'argon2';
 import { generateToken } from '../utils/generateToken';
+import prisma from '../utils/prismaClient';
 
-const prisma = new PrismaClient();
 const authService = {
   authenticate: async (email: string, password: string) => {
     const user = await prisma.user.findUnique({

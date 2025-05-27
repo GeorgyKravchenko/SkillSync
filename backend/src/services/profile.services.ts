@@ -1,6 +1,6 @@
-import { PrismaClient, User } from '../../generated/prisma';
+import { User } from '../../generated/prisma';
+import prisma from '../utils/prismaClient';
 
-const prisma = new PrismaClient();
 const profileService = {
   getProfile: async (id: number) => {
     return await prisma.user.findUnique({

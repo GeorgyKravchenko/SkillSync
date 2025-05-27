@@ -7,6 +7,7 @@ import profileRouter from './routes/profile.route';
 import authMiddleware from './middleware/auth.middleware';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
+import postsRouter from './routes/posts.route';
 dotenv.config();
 
 const app = express();
@@ -23,7 +24,7 @@ app.use(express.json());
 app.use(helmet());
 app.use('/api/auth', authRouter);
 app.use('/api/profile', authMiddleware, profileRouter);
-
+app.use('/api/posts', authMiddleware, postsRouter);
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
