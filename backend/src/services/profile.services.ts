@@ -7,6 +7,11 @@ const profileService = {
       where: {
         id,
       },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+      },
     });
   },
   updateProfile: async (id: number, data: { name?: string; email?: string }) => {

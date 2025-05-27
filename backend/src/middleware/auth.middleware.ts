@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import { PrismaClient } from '../../generated/prisma';
+import cookieParser from 'cookie-parser'; // Не забудьте подключить
 
 const prisma = new PrismaClient();
 
@@ -10,13 +11,13 @@ interface JwtPayload {
 
 const authMiddleware = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const authHeader = req.headers.authorization;
-    if (!authHeader?.startsWith('Bearer ')) {
-      res.status(401).json({ message: 'Не предоставлен токен авторизации' });
+    const token = req.cookies.token;
+
+    if (!token) {
+      res.status(401).json({ message: 'Требуется аутентификация' });
       return;
     }
 
-    const token = authHeader.split(' ')[1];
     const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as JwtPayload;
 
     const user = await prisma.user.findUnique({
@@ -43,6 +44,8 @@ const authMiddleware = async (req: Request, res: Response, next: NextFunction) =
 
     console.error('Ошибка аутентификации:', error);
     res.status(500).json({ message: 'Ошибка сервера при аутентификации' });
+    return;
   }
 };
+
 export default authMiddleware;

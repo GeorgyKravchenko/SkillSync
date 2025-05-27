@@ -7,11 +7,18 @@ const authController = {
     try {
       const { email, password } = req.body;
       const { user, token } = await authService.authenticate(email, password);
-      res.status(200).json({
-        message: 'Authentication successful',
-        user,
-        token,
-      });
+      res
+        .cookie('token', token, {
+          httpOnly: true,
+          secure: process.env.NODE_ENV === 'production', // Только HTTPS в продакшене
+          maxAge: 3600000, // 1 час
+        })
+        .status(200)
+        .json({
+          message: 'Authentication successful',
+          user,
+          token,
+        });
     } catch (error) {
       console.error('Authentication error:', error);
       res.status(500).json({
@@ -24,11 +31,18 @@ const authController = {
     try {
       const { name, email, password } = req.body;
       const { user, token } = await authService.register(name, email, password);
-      res.status(200).json({
-        message: 'Authentication successful',
-        user,
-        token: generateToken(user.id),
-      });
+      res
+        .cookie('token', token, {
+          httpOnly: true,
+          secure: process.env.NODE_ENV === 'production', // Только HTTPS в продакшене
+          maxAge: 3600000, // 1 час
+        })
+        .status(200)
+        .json({
+          message: 'Authentication successful',
+          user,
+          token: generateToken(user.id),
+        });
     } catch (error) {
       console.error('Authentication error:', error);
       res.status(500).json({
