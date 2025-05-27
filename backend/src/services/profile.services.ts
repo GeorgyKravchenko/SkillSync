@@ -1,4 +1,4 @@
-import { PrismaClient } from '../../generated/prisma';
+import { PrismaClient, User } from '../../generated/prisma';
 
 const prisma = new PrismaClient();
 const profileService = {
@@ -9,12 +9,17 @@ const profileService = {
       },
       select: {
         id: true,
-        name: true,
         email: true,
+        name: true,
+        avatar: true,
+        description: true,
       },
     });
   },
-  updateProfile: async (id: number, data: { name?: string; email?: string }) => {
+  updateProfile: async (
+    id: number,
+    data: Omit<User, 'id' | 'createdAt' | 'updatedAt' | 'password'>,
+  ) => {
     return await prisma.user.update({
       where: {
         id,

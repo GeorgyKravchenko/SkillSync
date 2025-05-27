@@ -18,12 +18,12 @@ const profileController = {
   updateProfile: async (req: Request, res: Response) => {
     try {
       const id = req.user?.id;
-      const { name, email } = req.body;
+      const { name, email, description, avatar } = req.body;
       if (!id) {
         res.status(400).json({ message: 'User ID is required' });
         return;
       }
-      const user = await profileService.updateProfile(id, { name, email });
+      const user = await profileService.updateProfile(id, { name, email, description, avatar });
       res.status(200).json({ message: 'Profile updated successfully', user });
     } catch (error) {
       res.status(500).json({ message: 'Error updating profile' });
