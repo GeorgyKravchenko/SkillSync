@@ -15,12 +15,45 @@ datasource db {
 }
 
 model User {
-  id          Int      @id @default(autoincrement())
-  email       String   @unique
+  id          Int       @id @default(autoincrement())
+  email       String    @unique
   description String?
   avatar      String?
   name        String
   password    String
-  createdAt   DateTime @default(now()) @map("created_at")
-  updatedAt   DateTime @updatedAt @map("updated_at")
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+  posts       Post[]
+  Comment     Comment[]
+}
+
+model Post {
+  id        Int       @id @default(autoincrement())
+  title     String
+  content   String?
+  authorId  Int       @map("author_id")
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  author    User      @relation(fields: [authorId], references: [id])
+  topic     Topic?    @relation(fields: [topicId], references: [id])
+  topicId   Int?
+  Comment   Comment[]
+}
+
+model Topic {
+  id    Int    @id @default(autoincrement())
+  slug  String @unique
+  title String
+  posts Post[]
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  content   String
+  postId    Int      @map("post_id")
+  authorId  Int      @map("author_id")
+  post      Post     @relation(fields: [postId], references: [id])
+  author    User     @relation(fields: [authorId], references: [id])
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 }

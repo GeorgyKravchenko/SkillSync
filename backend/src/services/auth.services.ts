@@ -1,4 +1,3 @@
-import { register } from 'module';
 import { PrismaClient } from '../../generated/prisma';
 import { hash, verify } from 'argon2';
 import { generateToken } from '../utils/generateToken';

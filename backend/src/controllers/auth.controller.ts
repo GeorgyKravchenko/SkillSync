@@ -11,7 +11,7 @@ const authController = {
         .cookie('token', token, {
           httpOnly: true,
           secure: process.env.NODE_ENV === 'production', // Только HTTPS в продакшене
-          maxAge: 3600000, // 1 час
+          maxAge: 24 * 3600000,
         })
         .status(200)
         .json({
@@ -35,7 +35,7 @@ const authController = {
         .cookie('token', token, {
           httpOnly: true,
           secure: process.env.NODE_ENV === 'production', // Только HTTPS в продакшене
-          maxAge: 3600000, // 1 час
+          maxAge: 24 * 3600000,
         })
         .status(200)
         .json({
