@@ -33,7 +33,7 @@ export default function TopicPage() {
         </p>
         <div className="mt-6">
           <Link
-            href={`/topic/${slug}/new`}
+            href={`/topics/new`}
             className="inline-block bg-cyan-600 hover:bg-cyan-700 text-white font-semibold py-2 px-6 rounded-xl shadow-md transition"
           >
             + Створити публікацію
