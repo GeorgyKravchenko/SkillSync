@@ -1,10 +1,10 @@
-import { IUserLogin, IUserRegister } from '@/types/user.types';
+import { IUserLogin, IUserCreateDto } from '@/types/user.types';
 import api from '@/utils/api';
 import axios from 'axios';
 
 class AuthService {
   private static API_PREFIX = '/auth';
-  static async register(data: IUserRegister) {
+  static async register(data: IUserCreateDto) {
     return await axios.post(`${this.API_PREFIX}/register`, data);
   }
   static async login(data: IUserLogin) {

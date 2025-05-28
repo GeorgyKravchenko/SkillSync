@@ -1,16 +1,10 @@
-export interface IUser {
-  id: string;
-  name: string;
-  email: string;
-  password: string;
-  createdAt: Date;
-  updatedAt: Date;
-}
-export interface IUserLogin {
-  email: string;
-  password: string;
-}
-export interface IUserRegister {
+import { BaseResponseData } from './bases.types';
+
+export interface IUser extends IUserCreateDto, BaseResponseData {}
+
+export type IUserLogin = Omit<IUserCreateDto, 'name'>;
+
+export interface IUserCreateDto {
   name: string;
   email: string;
   password: string;
