@@ -1,7 +1,7 @@
 'use client';
 import BaseButton from '@/components/ui/BaseButton';
 import BaseInput from '@/components/ui/BaseInput';
-import useLogin from '@/hooks/useLogin';
+import useLogin from '@/hooks/auth/useLogin';
 import { IUserLogin } from '@/types/user.types';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';

@@ -1,8 +1,8 @@
 'use client';
 
 import BaseButton from '@/components/ui/BaseButton';
-import useGetProfile from '@/hooks/useGetProfile';
-import useUpdateProfile from '@/hooks/useUpdateProfile';
+import useGetProfile from '@/hooks/profile/useGetProfile';
+import useUpdateProfile from '@/hooks/profile/useUpdateProfile';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 

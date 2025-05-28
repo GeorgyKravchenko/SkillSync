@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
@@ -17,15 +18,15 @@ export default function Header() {
           <span className="text-2xl">⚡</span> SkillsSync
         </div>
         <nav className="hidden md:flex gap-6 text-cyan-800 dark:text-cyan-200 font-medium">
-          <a href="#" className="hover:text-cyan-500 transition">
+          <Link href="/" className="hover:text-cyan-500 transition">
             Головна
-          </a>
-          <a href="#" className="hover:text-cyan-500 transition">
+          </Link>
+          <Link href="/skills" className="hover:text-cyan-500 transition">
             Навички
-          </a>
-          <a href="#" className="hover:text-cyan-500 transition">
+          </Link>
+          <Link href="/contacts" className="hover:text-cyan-500 transition">
             Контакти
-          </a>
+          </Link>
         </nav>
         <div className="flex items-center gap-2">
           <button
