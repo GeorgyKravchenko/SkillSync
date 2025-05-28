@@ -2,6 +2,24 @@ import { Request, Response } from 'express';
 import postsService from '../services/posts.service';
 
 const postsController = {
+  getPostsByTopic: async (req: Request, res: Response) => {
+    try {
+      const topicId = parseInt(req.params.topicId);
+      const skip = parseInt(req.query.skip as string) || 0;
+      const limit = parseInt(req.query.limit as string) || 10;
+
+      const posts = await postsService.getPostsByTopic(topicId, skip, limit);
+      if (!posts || posts.length === 0) {
+        res.status(404).json({ message: 'Посты по данной теме не найдены' });
+        return;
+      }
+      res.status(200).json(posts);
+    } catch (error) {
+      console.error('Ошибка при получении постов по теме:', error);
+      res.status(500).json({ message: 'Ошибка сервера при получении постов по теме' });
+    }
+  },
+
   getPosts: async (req: Request, res: Response) => {
     try {
       const skip = parseInt(req.query.skip as string) || 0;

@@ -3,6 +3,26 @@ import prisma from '../utils/prismaClient';
 const postsService = {
   async getPosts(skip: number = 0, limit: number = 10) {
     return await prisma.post.findMany({
+      select: {
+        id: true,
+        title: true,
+        content: true,
+        createdAt: true,
+        updatedAt: true,
+        author: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
+      },
+      take: limit,
+      skip,
+    });
+  },
+  async getPostsByTopic(topicId: number, skip: number = 0, limit: number = 10) {
+    return await prisma.post.findMany({
+      where: { topicId },
       take: limit,
       skip,
     });
