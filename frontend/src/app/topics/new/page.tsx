@@ -12,7 +12,7 @@ export default function NewPostPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-cyan-50 to-blue-100 dark:from-gray-900 dark:to-gray-950 text-gray-900 dark:text-white p-4 sm:p-8 font-sans">
+    <main className="min-h-screen bg-gradient-to-br from-cyan-50 to-blue-100 dark:from-gray-900 dark:to-gray-950 text-gray-900 dark:text-white p-4 sm:p-8 font-sans">
       <div className="max-w-2xl mx-auto pt-16 sm:pt-20">
         <header className="mb-8 text-center">
           <h1 className="text-3xl font-bold mb-2 text-cyan-800 dark:text-cyan-300">
@@ -67,6 +67,6 @@ export default function NewPostPage() {
           </BaseButton>
         </form>
       </div>
-    </div>
+    </main>
   );
 }
