@@ -16,14 +16,10 @@ export default function ProfilePage() {
     handleSubmit,
     formState: { errors },
   } = useForm<ProfileFormData>();
-  const { data, isSuccess, refetch } = useGetProfile();
+  const { data, refetch } = useGetProfile();
   const { mutate, isSuccess: isSuccessUpdate } = useUpdateProfile();
   const [isEditing, setIsEditing] = useState(false);
 
-  useEffect(() => {
-    if (!isSuccess) return;
-    console.log('Profile data:', data);
-  }, [isSuccess, data]);
   useEffect(() => {
     if (isSuccessUpdate) {
       setIsEditing(false);

@@ -6,6 +6,7 @@ export interface IPost extends IPostCreateDto, BaseResponseData {
 }
 
 export interface IPostCreateDto {
+  topicId: number;
   title: string;
-  content: string | null;
+  content?: string;
 }

@@ -1,4 +1,10 @@
+'use client';
+
+import useTopic from '@/hooks/topic/useTopic';
+import Link from 'next/link';
+
 export default function HomePage() {
+  const { data: topics } = useTopic();
   return (
     <div className=" pt-24 min-h-screen transition-colors duration-500 bg-gradient-to-br from-cyan-100 to-blue-300 dark:from-cyan-900 dark:to-blue-900 text-gray-900 dark:text-white p-10 flex flex-col items-center justify-center font-sans relative">
       <header className="mb-16 text-center">
@@ -36,24 +42,16 @@ export default function HomePage() {
       <section className="w-full max-w-6xl">
         <h2 className="text-3xl font-bold mb-6 text-center">Популярні теми</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 gap-4">
-          {[
-            'Програмування',
-            'Дизайн',
-            'Маркетинг',
-            'Психологія',
-            'Медицина',
-            'Фінанси',
-            'Освіта',
-            'ІТ-менеджмент',
-            'Кібербезпека',
-          ].map((topic) => (
-            <div
-              key={topic}
-              className="px-4 py-2 bg-white dark:bg-gray-800 rounded-lg border border-cyan-300 dark:border-cyan-600 text-center text-cyan-700 dark:text-cyan-200 font-medium hover:scale-105 transition-transform cursor-pointer"
-            >
-              {topic}
-            </div>
-          ))}
+          {topics &&
+            topics.map((topic) => (
+              <Link
+                href={`/topics/${topic.slug}`}
+                key={topic.slug}
+                className="px-4 py-2 bg-white dark:bg-gray-800 rounded-lg border border-cyan-300 dark:border-cyan-600 text-center text-cyan-700 dark:text-cyan-200 font-medium hover:scale-105 transition-transform cursor-pointer"
+              >
+                {topic.title}
+              </Link>
+            ))}
         </div>
       </section>
     </div>
