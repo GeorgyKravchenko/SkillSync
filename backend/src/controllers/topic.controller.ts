@@ -10,23 +10,6 @@ const topicController = {
       res.status(500).json({ message: 'Error getting topics' });
     }
   },
-  getTopicById: async (req: Request, res: Response) => {
-    try {
-      const id = parseInt(req.params.id);
-      if (isNaN(id)) {
-        res.status(400).json({ message: 'Invalid topic ID' });
-        return;
-      }
-      const topic = await topicService.getTopicById(id);
-      if (!topic) {
-        res.status(404).json({ message: 'Topic not found' });
-        return;
-      }
-      res.status(200).json(topic);
-    } catch (error) {
-      res.status(500).json({ message: 'Error getting topic' });
-    }
-  },
   createTopic: async (req: Request, res: Response) => {
     try {
       const { title, slug } = req.body;

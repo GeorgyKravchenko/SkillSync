@@ -61,7 +61,12 @@ const postsController = {
         res.status(401).json({ message: 'Требуется аутентификация' });
         return;
       }
-      const newPost = await postsService.createPost({ title, content, topicId, authorId });
+      const newPost = await postsService.createPost({
+        title,
+        content,
+        topicId: parseInt(topicId),
+        authorId,
+      });
       res.status(201).json(newPost);
     } catch (error) {
       console.error('Ошибка при создании поста:', error);

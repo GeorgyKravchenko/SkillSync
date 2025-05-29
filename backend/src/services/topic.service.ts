@@ -15,10 +15,6 @@ const topicService = {
     const topic = await prisma.topic.create({ data });
     return topic;
   },
-  getTopicById: async (id: number) => {
-    const topic = await prisma.topic.findUnique({ where: { id } });
-    return topic;
-  },
   deleteTopic: async (id: number) => {
     const topic = await prisma.topic.delete({ where: { id } });
     return topic;
