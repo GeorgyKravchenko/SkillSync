@@ -32,7 +32,7 @@ const postsService = {
       where: { id },
     });
   },
-  async createPost(data: { title: string; content: string; authorId: number }) {
+  async createPost(data: { title: string; content: string; topicId: number; authorId: number }) {
     return await prisma.post.create({ data });
   },
   async updatePost(id: number, data: { title?: string; content?: string }) {

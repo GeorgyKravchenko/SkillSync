@@ -55,13 +55,13 @@ const postsController = {
   },
   createPost: async (req: Request, res: Response) => {
     try {
-      const { title, content } = req.body;
+      const { title, content, topicId } = req.body;
       const authorId = req.user?.id;
       if (!authorId) {
         res.status(401).json({ message: 'Требуется аутентификация' });
         return;
       }
-      const newPost = await postsService.createPost({ title, content, authorId });
+      const newPost = await postsService.createPost({ title, content, topicId, authorId });
       res.status(201).json(newPost);
     } catch (error) {
       console.error('Ошибка при создании поста:', error);

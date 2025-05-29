@@ -2606,7 +2606,7 @@ export namespace Prisma {
     authorId: number
     createdAt: Date
     updatedAt: Date
-    topicId: number | null
+    topicId: number
     _count: PostCountAggregateOutputType | null
     _avg: PostAvgAggregateOutputType | null
     _sum: PostSumAggregateOutputType | null
@@ -2637,7 +2637,7 @@ export namespace Prisma {
     updatedAt?: boolean
     topicId?: boolean
     author?: boolean | UserDefaultArgs<ExtArgs>
-    topic?: boolean | Post$topicArgs<ExtArgs>
+    topic?: boolean | TopicDefaultArgs<ExtArgs>
     Comment?: boolean | Post$CommentArgs<ExtArgs>
     _count?: boolean | PostCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["post"]>
@@ -2651,7 +2651,7 @@ export namespace Prisma {
     updatedAt?: boolean
     topicId?: boolean
     author?: boolean | UserDefaultArgs<ExtArgs>
-    topic?: boolean | Post$topicArgs<ExtArgs>
+    topic?: boolean | TopicDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["post"]>
 
   export type PostSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -2663,7 +2663,7 @@ export namespace Prisma {
     updatedAt?: boolean
     topicId?: boolean
     author?: boolean | UserDefaultArgs<ExtArgs>
-    topic?: boolean | Post$topicArgs<ExtArgs>
+    topic?: boolean | TopicDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["post"]>
 
   export type PostSelectScalar = {
@@ -2679,24 +2679,24 @@ export namespace Prisma {
   export type PostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "content" | "authorId" | "createdAt" | "updatedAt" | "topicId", ExtArgs["result"]["post"]>
   export type PostInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     author?: boolean | UserDefaultArgs<ExtArgs>
-    topic?: boolean | Post$topicArgs<ExtArgs>
+    topic?: boolean | TopicDefaultArgs<ExtArgs>
     Comment?: boolean | Post$CommentArgs<ExtArgs>
     _count?: boolean | PostCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type PostIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     author?: boolean | UserDefaultArgs<ExtArgs>
-    topic?: boolean | Post$topicArgs<ExtArgs>
+    topic?: boolean | TopicDefaultArgs<ExtArgs>
   }
   export type PostIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     author?: boolean | UserDefaultArgs<ExtArgs>
-    topic?: boolean | Post$topicArgs<ExtArgs>
+    topic?: boolean | TopicDefaultArgs<ExtArgs>
   }
 
   export type $PostPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Post"
     objects: {
       author: Prisma.$UserPayload<ExtArgs>
-      topic: Prisma.$TopicPayload<ExtArgs> | null
+      topic: Prisma.$TopicPayload<ExtArgs>
       Comment: Prisma.$CommentPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -2706,7 +2706,7 @@ export namespace Prisma {
       authorId: number
       createdAt: Date
       updatedAt: Date
-      topicId: number | null
+      topicId: number
     }, ExtArgs["result"]["post"]>
     composites: {}
   }
@@ -3102,7 +3102,7 @@ export namespace Prisma {
   export interface Prisma__PostClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     author<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    topic<T extends Post$topicArgs<ExtArgs> = {}>(args?: Subset<T, Post$topicArgs<ExtArgs>>): Prisma__TopicClient<$Result.GetResult<Prisma.$TopicPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    topic<T extends TopicDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TopicDefaultArgs<ExtArgs>>): Prisma__TopicClient<$Result.GetResult<Prisma.$TopicPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     Comment<T extends Post$CommentArgs<ExtArgs> = {}>(args?: Subset<T, Post$CommentArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -3533,25 +3533,6 @@ export namespace Prisma {
      * Limit how many Posts to delete.
      */
     limit?: number
-  }
-
-  /**
-   * Post.topic
-   */
-  export type Post$topicArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Topic
-     */
-    select?: TopicSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Topic
-     */
-    omit?: TopicOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TopicInclude<ExtArgs> | null
-    where?: TopicWhereInput
   }
 
   /**
@@ -6031,9 +6012,9 @@ export namespace Prisma {
     authorId?: IntFilter<"Post"> | number
     createdAt?: DateTimeFilter<"Post"> | Date | string
     updatedAt?: DateTimeFilter<"Post"> | Date | string
-    topicId?: IntNullableFilter<"Post"> | number | null
+    topicId?: IntFilter<"Post"> | number
     author?: XOR<UserScalarRelationFilter, UserWhereInput>
-    topic?: XOR<TopicNullableScalarRelationFilter, TopicWhereInput> | null
+    topic?: XOR<TopicScalarRelationFilter, TopicWhereInput>
     Comment?: CommentListRelationFilter
   }
 
@@ -6044,7 +6025,7 @@ export namespace Prisma {
     authorId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    topicId?: SortOrderInput | SortOrder
+    topicId?: SortOrder
     author?: UserOrderByWithRelationInput
     topic?: TopicOrderByWithRelationInput
     Comment?: CommentOrderByRelationAggregateInput
@@ -6060,9 +6041,9 @@ export namespace Prisma {
     authorId?: IntFilter<"Post"> | number
     createdAt?: DateTimeFilter<"Post"> | Date | string
     updatedAt?: DateTimeFilter<"Post"> | Date | string
-    topicId?: IntNullableFilter<"Post"> | number | null
+    topicId?: IntFilter<"Post"> | number
     author?: XOR<UserScalarRelationFilter, UserWhereInput>
-    topic?: XOR<TopicNullableScalarRelationFilter, TopicWhereInput> | null
+    topic?: XOR<TopicScalarRelationFilter, TopicWhereInput>
     Comment?: CommentListRelationFilter
   }, "id">
 
@@ -6073,7 +6054,7 @@ export namespace Prisma {
     authorId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    topicId?: SortOrderInput | SortOrder
+    topicId?: SortOrder
     _count?: PostCountOrderByAggregateInput
     _avg?: PostAvgOrderByAggregateInput
     _max?: PostMaxOrderByAggregateInput
@@ -6091,7 +6072,7 @@ export namespace Prisma {
     authorId?: IntWithAggregatesFilter<"Post"> | number
     createdAt?: DateTimeWithAggregatesFilter<"Post"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Post"> | Date | string
-    topicId?: IntNullableWithAggregatesFilter<"Post"> | number | null
+    topicId?: IntWithAggregatesFilter<"Post"> | number
   }
 
   export type TopicWhereInput = {
@@ -6294,7 +6275,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     author: UserCreateNestedOneWithoutPostsInput
-    topic?: TopicCreateNestedOneWithoutPostsInput
+    topic: TopicCreateNestedOneWithoutPostsInput
     Comment?: CommentCreateNestedManyWithoutPostInput
   }
 
@@ -6305,7 +6286,7 @@ export namespace Prisma {
     authorId: number
     createdAt?: Date | string
     updatedAt?: Date | string
-    topicId?: number | null
+    topicId: number
     Comment?: CommentUncheckedCreateNestedManyWithoutPostInput
   }
 
@@ -6315,7 +6296,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     author?: UserUpdateOneRequiredWithoutPostsNestedInput
-    topic?: TopicUpdateOneWithoutPostsNestedInput
+    topic?: TopicUpdateOneRequiredWithoutPostsNestedInput
     Comment?: CommentUpdateManyWithoutPostNestedInput
   }
 
@@ -6326,7 +6307,7 @@ export namespace Prisma {
     authorId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    topicId?: NullableIntFieldUpdateOperationsInput | number | null
+    topicId?: IntFieldUpdateOperationsInput | number
     Comment?: CommentUncheckedUpdateManyWithoutPostNestedInput
   }
 
@@ -6337,7 +6318,7 @@ export namespace Prisma {
     authorId: number
     createdAt?: Date | string
     updatedAt?: Date | string
-    topicId?: number | null
+    topicId: number
   }
 
   export type PostUpdateManyMutationInput = {
@@ -6354,7 +6335,7 @@ export namespace Prisma {
     authorId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    topicId?: NullableIntFieldUpdateOperationsInput | number | null
+    topicId?: IntFieldUpdateOperationsInput | number
   }
 
   export type TopicCreateInput = {
@@ -6642,25 +6623,14 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type IntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
   export type UserScalarRelationFilter = {
     is?: UserWhereInput
     isNot?: UserWhereInput
   }
 
-  export type TopicNullableScalarRelationFilter = {
-    is?: TopicWhereInput | null
-    isNot?: TopicWhereInput | null
+  export type TopicScalarRelationFilter = {
+    is?: TopicWhereInput
+    isNot?: TopicWhereInput
   }
 
   export type PostCountOrderByAggregateInput = {
@@ -6703,22 +6673,6 @@ export namespace Prisma {
     id?: SortOrder
     authorId?: SortOrder
     topicId?: SortOrder
-  }
-
-  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
   export type TopicCountOrderByAggregateInput = {
@@ -6929,12 +6883,10 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPostsInput, UserUpdateWithoutPostsInput>, UserUncheckedUpdateWithoutPostsInput>
   }
 
-  export type TopicUpdateOneWithoutPostsNestedInput = {
+  export type TopicUpdateOneRequiredWithoutPostsNestedInput = {
     create?: XOR<TopicCreateWithoutPostsInput, TopicUncheckedCreateWithoutPostsInput>
     connectOrCreate?: TopicCreateOrConnectWithoutPostsInput
     upsert?: TopicUpsertWithoutPostsInput
-    disconnect?: TopicWhereInput | boolean
-    delete?: TopicWhereInput | boolean
     connect?: TopicWhereUniqueInput
     update?: XOR<XOR<TopicUpdateToOneWithWhereWithoutPostsInput, TopicUpdateWithoutPostsInput>, TopicUncheckedUpdateWithoutPostsInput>
   }
@@ -6951,14 +6903,6 @@ export namespace Prisma {
     update?: CommentUpdateWithWhereUniqueWithoutPostInput | CommentUpdateWithWhereUniqueWithoutPostInput[]
     updateMany?: CommentUpdateManyWithWhereWithoutPostInput | CommentUpdateManyWithWhereWithoutPostInput[]
     deleteMany?: CommentScalarWhereInput | CommentScalarWhereInput[]
-  }
-
-  export type NullableIntFieldUpdateOperationsInput = {
-    set?: number | null
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
   }
 
   export type CommentUncheckedUpdateManyWithoutPostNestedInput = {
@@ -7181,39 +7125,12 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
-  }
-
-  export type NestedFloatNullableFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
-  }
-
   export type PostCreateWithoutAuthorInput = {
     title: string
     content?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    topic?: TopicCreateNestedOneWithoutPostsInput
+    topic: TopicCreateNestedOneWithoutPostsInput
     Comment?: CommentCreateNestedManyWithoutPostInput
   }
 
@@ -7223,7 +7140,7 @@ export namespace Prisma {
     content?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    topicId?: number | null
+    topicId: number
     Comment?: CommentUncheckedCreateNestedManyWithoutPostInput
   }
 
@@ -7288,7 +7205,7 @@ export namespace Prisma {
     authorId?: IntFilter<"Post"> | number
     createdAt?: DateTimeFilter<"Post"> | Date | string
     updatedAt?: DateTimeFilter<"Post"> | Date | string
-    topicId?: IntNullableFilter<"Post"> | number | null
+    topicId?: IntFilter<"Post"> | number
   }
 
   export type CommentUpsertWithWhereUniqueWithoutAuthorInput = {
@@ -7511,7 +7428,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     author: UserCreateNestedOneWithoutPostsInput
-    topic?: TopicCreateNestedOneWithoutPostsInput
+    topic: TopicCreateNestedOneWithoutPostsInput
   }
 
   export type PostUncheckedCreateWithoutCommentInput = {
@@ -7521,7 +7438,7 @@ export namespace Prisma {
     authorId: number
     createdAt?: Date | string
     updatedAt?: Date | string
-    topicId?: number | null
+    topicId: number
   }
 
   export type PostCreateOrConnectWithoutCommentInput = {
@@ -7574,7 +7491,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     author?: UserUpdateOneRequiredWithoutPostsNestedInput
-    topic?: TopicUpdateOneWithoutPostsNestedInput
+    topic?: TopicUpdateOneRequiredWithoutPostsNestedInput
   }
 
   export type PostUncheckedUpdateWithoutCommentInput = {
@@ -7584,7 +7501,7 @@ export namespace Prisma {
     authorId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    topicId?: NullableIntFieldUpdateOperationsInput | number | null
+    topicId?: IntFieldUpdateOperationsInput | number
   }
 
   export type UserUpsertWithoutCommentInput = {
@@ -7627,7 +7544,7 @@ export namespace Prisma {
     content?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    topicId?: number | null
+    topicId: number
   }
 
   export type CommentCreateManyAuthorInput = {
@@ -7643,7 +7560,7 @@ export namespace Prisma {
     content?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    topic?: TopicUpdateOneWithoutPostsNestedInput
+    topic?: TopicUpdateOneRequiredWithoutPostsNestedInput
     Comment?: CommentUpdateManyWithoutPostNestedInput
   }
 
@@ -7653,7 +7570,7 @@ export namespace Prisma {
     content?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    topicId?: NullableIntFieldUpdateOperationsInput | number | null
+    topicId?: IntFieldUpdateOperationsInput | number
     Comment?: CommentUncheckedUpdateManyWithoutPostNestedInput
   }
 
@@ -7663,7 +7580,7 @@ export namespace Prisma {
     content?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    topicId?: NullableIntFieldUpdateOperationsInput | number | null
+    topicId?: IntFieldUpdateOperationsInput | number
   }
 
   export type CommentUpdateWithoutAuthorInput = {

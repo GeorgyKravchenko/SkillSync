@@ -35,8 +35,8 @@ model Post {
   createdAt DateTime  @default(now()) @map("created_at")
   updatedAt DateTime  @updatedAt @map("updated_at")
   author    User      @relation(fields: [authorId], references: [id])
-  topic     Topic?    @relation(fields: [topicId], references: [id])
-  topicId   Int?
+  topic     Topic     @relation(fields: [topicId], references: [id])
+  topicId   Int
   Comment   Comment[]
 }
 
