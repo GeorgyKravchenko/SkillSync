@@ -43,7 +43,7 @@ export default function TopicPage() {
                 key={post.id}
                 className="p-4 rounded-xl border border-cyan-300 dark:border-cyan-700 bg-white dark:bg-gray-800 shadow-sm hover:shadow-lg transition"
               >
-                <Link href={`/topic/${slug}/post/${post.id}`}>
+                <Link href={`/topics/${slug}/post/${post.id}`}>
                   <h3 className="text-xl font-semibold text-cyan-700 dark:text-cyan-300 hover:underline">
                     {post.title}
                   </h3>

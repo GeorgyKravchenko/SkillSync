@@ -2,7 +2,7 @@
 import BaseButton from '@/components/ui/BaseButton';
 import BaseInput from '@/components/ui/BaseInput';
 import useSingUp from '@/hooks/auth/useSingUp';
-import { IUserRegister } from '@/types/user.types';
+import { IUserCreateDto } from '@/types/user.types';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
@@ -14,8 +14,8 @@ const SingUpPage = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<IUserRegister>();
-  const onSubmit = (data: IUserRegister) => {
+  } = useForm<IUserCreateDto>();
+  const onSubmit = (data: IUserCreateDto) => {
     mutate(data);
     console.log('Registration submitted', data);
   };
