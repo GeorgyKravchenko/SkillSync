@@ -1,6 +1,5 @@
 import express from 'express';
 import helmet from 'helmet';
-import { PrismaClient } from '../generated/prisma';
 import dotenv from 'dotenv';
 import authRouter from './routes/auth.route';
 import profileRouter from './routes/profile.route';
@@ -32,3 +31,5 @@ app.use('/api/topics', authMiddleware, topicRouter);
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
+
+export default app;

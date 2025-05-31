@@ -30,6 +30,33 @@ const postsService = {
   async getPostById(id: number) {
     return await prisma.post.findUnique({
       where: { id },
+      select: {
+        id: true,
+        title: true,
+        content: true,
+        createdAt: true,
+        updatedAt: true,
+        author: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
+        comments: {
+          select: {
+            id: true,
+            content: true,
+            createdAt: true,
+            updatedAt: true,
+            author: {
+              select: {
+                id: true,
+                name: true,
+              },
+            },
+          },
+        },
+      },
     });
   },
   async createPost(data: { title: string; content: string; topicId: number; authorId: number }) {

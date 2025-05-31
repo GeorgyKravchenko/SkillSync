@@ -37,7 +37,7 @@ model Post {
   author    User      @relation(fields: [authorId], references: [id])
   topic     Topic     @relation(fields: [topicId], references: [id])
   topicId   Int
-  Comment   Comment[]
+  comments  Comment[]
 }
 
 model Topic {
