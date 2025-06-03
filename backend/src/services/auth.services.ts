@@ -16,8 +16,9 @@ const authService = {
     if (!isPasswordValid) {
       throw new Error('Invalid password or email');
     } else {
+      const { password: _, ...safeUser } = user;
       const token = generateToken(user.id);
-      return { user, token };
+      return { user: safeUser, token };
     }
   },
   register: async (name: string, email: string, password: string) => {
