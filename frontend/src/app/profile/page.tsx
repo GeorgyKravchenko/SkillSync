@@ -3,6 +3,7 @@
 import BaseButton from '@/components/ui/BaseButton';
 import useGetProfile from '@/hooks/profile/useGetProfile';
 import useUpdateProfile from '@/hooks/profile/useUpdateProfile';
+import useAuthStore from '@/lib/store/user';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -19,7 +20,7 @@ export default function ProfilePage() {
   const { data, refetch } = useGetProfile();
   const { mutate, isSuccess: isSuccessUpdate } = useUpdateProfile();
   const [isEditing, setIsEditing] = useState(false);
-
+  const user = useAuthStore((state) => state.user);
   useEffect(() => {
     if (isSuccessUpdate) {
       setIsEditing(false);
@@ -42,7 +43,7 @@ export default function ProfilePage() {
 
         <div className="flex items-center gap-6">
           <div className="w-20 h-20 rounded-full bg-cyan-200 dark:bg-cyan-800 flex items-center justify-center text-3xl">
-            👤
+            {user?.avatar ? user.avatar : user?.name?.charAt(0).toUpperCase() || '👤'}
           </div>
 
           {isEditing ? (

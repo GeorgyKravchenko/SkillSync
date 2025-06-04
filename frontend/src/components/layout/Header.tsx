@@ -45,7 +45,7 @@ export default function Header() {
               router.push('/profile');
             }}
           >
-            {user?.avatar ? user.avatar : user?.name?.charAt(0) || '👤'}
+            {user?.avatar ? user.avatar : user?.name?.charAt(0).toUpperCase() || '👤'}
           </button>
         </div>
       </div>
