@@ -1,5 +1,6 @@
 'use client';
 
+import useAuthStore from '@/lib/store/user';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -7,6 +8,7 @@ import { useEffect, useState } from 'react';
 export default function Header() {
   const router = useRouter();
   const [darkMode, setDarkMode] = useState(false);
+  const user = useAuthStore((state) => state.user);
   useEffect(() => {
     document.documentElement.classList.toggle('dark', darkMode);
   }, [darkMode]);
@@ -43,7 +45,7 @@ export default function Header() {
               router.push('/profile');
             }}
           >
-            👤
+            {user?.avatar ? user.avatar : user?.name?.charAt(0) || '👤'}
           </button>
         </div>
       </div>

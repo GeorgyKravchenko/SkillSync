@@ -1,6 +1,6 @@
 'use client';
 
-import { notFound, useParams } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { formatDistanceToNow } from 'date-fns';
 import { uk } from 'date-fns/locale';
@@ -15,7 +15,7 @@ export default function TopicPage() {
 
   const topic = topics?.find((t) => t.slug === slug);
 
-  if (!slug || !topic) return notFound();
+  if (!slug || !topic) return <div>Завантаження...</div>;
 
   return (
     <div className="pt-24 min-h-screen bg-gradient-to-br from-cyan-50 to-blue-100 dark:from-gray-900 dark:to-gray-950 text-gray-900 dark:text-white p-10 font-sans">
