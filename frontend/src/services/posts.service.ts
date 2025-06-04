@@ -3,7 +3,7 @@ import api from '@/utils/api';
 
 class PostsService {
   private static API_URL = '/posts';
-  static async getProfile() {
+  static async getPosts() {
     return await api.get<IPost[]>(`${this.API_URL}/`);
   }
   static async createPost(data: IPostCreateDto) {

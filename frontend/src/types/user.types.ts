@@ -1,6 +1,9 @@
 import { BaseResponseData } from './bases.types';
 
-export interface IUser extends IUserCreateDto, BaseResponseData {}
+export interface IUser extends Omit<IUserCreateDto, 'password'>, BaseResponseData {
+  avatar?: string;
+  description?: string;
+}
 
 export type IUserLogin = Omit<IUserCreateDto, 'name'>;
 
