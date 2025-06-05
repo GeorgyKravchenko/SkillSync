@@ -156,6 +156,28 @@ exports.Prisma.CommentScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.PostReactionScalarFieldEnum = {
+  id: 'id',
+  postId: 'postId',
+  authorId: 'authorId',
+  likesCount: 'likesCount',
+  dislikesCount: 'dislikesCount',
+  reaction: 'reaction',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.CommentReactionScalarFieldEnum = {
+  id: 'id',
+  commentId: 'commentId',
+  authorId: 'authorId',
+  likesCount: 'likesCount',
+  dislikesCount: 'dislikesCount',
+  reaction: 'reaction',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -170,13 +192,18 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
-
+exports.Reaction = exports.$Enums.Reaction = {
+  LIKE: 'LIKE',
+  DISLIKE: 'DISLIKE'
+};
 
 exports.Prisma.ModelName = {
   User: 'User',
   Post: 'Post',
   Topic: 'Topic',
-  Comment: 'Comment'
+  Comment: 'Comment',
+  PostReaction: 'PostReaction',
+  CommentReaction: 'CommentReaction'
 };
 
 /**

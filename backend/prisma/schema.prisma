@@ -14,30 +14,38 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Reaction {
+  LIKE
+  DISLIKE
+}
+
 model User {
-  id          Int       @id @default(autoincrement())
-  email       String    @unique
-  description String?
-  avatar      String?
-  name        String
-  password    String
-  createdAt   DateTime  @default(now()) @map("created_at")
-  updatedAt   DateTime  @updatedAt @map("updated_at")
-  posts       Post[]
-  Comment     Comment[]
+  id              Int              @id @default(autoincrement())
+  email           String           @unique
+  description     String?
+  avatar          String?
+  name            String
+  password        String
+  createdAt       DateTime         @default(now()) @map("created_at")
+  updatedAt       DateTime         @updatedAt @map("updated_at")
+  posts           Post[]
+  Comment         Comment[]
+  PostReaction    PostReaction[]
+  CommentReaction CommentReaction?
 }
 
 model Post {
-  id        Int       @id @default(autoincrement())
-  title     String
-  content   String?
-  authorId  Int       @map("author_id")
-  createdAt DateTime  @default(now()) @map("created_at")
-  updatedAt DateTime  @updatedAt @map("updated_at")
-  author    User      @relation(fields: [authorId], references: [id])
-  topic     Topic     @relation(fields: [topicId], references: [id])
-  topicId   Int
-  comments  Comment[]
+  id           Int            @id @default(autoincrement())
+  title        String
+  content      String?
+  authorId     Int            @map("author_id")
+  createdAt    DateTime       @default(now()) @map("created_at")
+  updatedAt    DateTime       @updatedAt @map("updated_at")
+  author       User           @relation(fields: [authorId], references: [id])
+  topic        Topic          @relation(fields: [topicId], references: [id])
+  topicId      Int
+  comments     Comment[]
+  PostReaction PostReaction[]
 }
 
 model Topic {
@@ -48,12 +56,39 @@ model Topic {
 }
 
 model Comment {
-  id        Int      @id @default(autoincrement())
-  content   String
-  postId    Int      @map("post_id")
-  authorId  Int      @map("author_id")
-  post      Post     @relation(fields: [postId], references: [id])
-  author    User     @relation(fields: [authorId], references: [id])
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
+  id              Int              @id @default(autoincrement())
+  content         String
+  postId          Int              @map("post_id")
+  authorId        Int              @map("author_id")
+  post            Post             @relation(fields: [postId], references: [id])
+  author          User             @relation(fields: [authorId], references: [id])
+  createdAt       DateTime         @default(now()) @map("created_at")
+  updatedAt       DateTime         @updatedAt @map("updated_at")
+  CommentReaction CommentReaction?
+}
+
+model PostReaction {
+  id            Int      @id @default(autoincrement())
+  postId        Int      @unique @map("post_id")
+  authorId      Int      @unique @map("author_id")
+  likesCount    Int      @default(0) @map("likes_count")
+  dislikesCount Int      @default(0) @map("dislikes_count")
+  reaction      Reaction
+  post          Post     @relation(fields: [postId], references: [id])
+  author        User     @relation(fields: [authorId], references: [id])
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+}
+
+model CommentReaction {
+  id            Int      @id @default(autoincrement())
+  commentId     Int      @unique @map("comment_id")
+  authorId      Int      @unique @map("author_id")
+  likesCount    Int      @default(0) @map("likes_count")
+  dislikesCount Int      @default(0) @map("dislikes_count")
+  reaction      Reaction
+  comment       Comment  @relation(fields: [commentId], references: [id])
+  author        User     @relation(fields: [authorId], references: [id])
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
 }
