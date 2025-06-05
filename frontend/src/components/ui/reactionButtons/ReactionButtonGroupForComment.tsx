@@ -1,7 +1,25 @@
+import { useDislikeComment, useLikeComment } from '@/hooks/comment/useCommentReaction';
 import { useState } from 'react';
 
-const ReactionButtonGroup = () => {
-  const [reaction, setReaction] = useState<'like' | 'dislike' | null>(null); // 'like' | 'dislike' | null
+const ReactionButtonGroupForComment = ({
+  commentId,
+  postId,
+}: {
+  commentId: number;
+  postId: number;
+}) => {
+  const [reaction, setReaction] = useState<'like' | 'dislike' | null>(null);
+  const { mutate: like } = useLikeComment(postId);
+  const { mutate: dislike } = useDislikeComment(postId);
+
+  const toggleReaction = async (newReaction: 'like' | 'dislike') => {
+    if (newReaction === 'like') {
+      like(commentId);
+    } else {
+      dislike(commentId);
+    }
+    setReaction((prev) => (prev === newReaction ? null : newReaction));
+  };
 
   return (
     <div className="flex items-center gap-2">
@@ -11,7 +29,7 @@ const ReactionButtonGroup = () => {
           name="reaction"
           value="like"
           checked={reaction === 'like'}
-          onChange={() => setReaction('like')}
+          onClick={() => toggleReaction('like')}
           className="sr-only"
           aria-label="Поставить лайк"
         />
@@ -25,7 +43,7 @@ const ReactionButtonGroup = () => {
             transition-all duration-200 ease-out stroke-[1.5]
             ${
               reaction === 'like'
-                ? 'stroke-cyan-400 group-hover:stroke-cyan-500'
+                ? 'stroke-cyan-600 group-hover:stroke-cyan-500'
                 : 'stroke-gray-400 group-hover:stroke-cyan-600 dark:stroke-gray-500 dark:group-hover:stroke-cyan-600'
             }
             active:scale-[0.97]
@@ -45,7 +63,7 @@ const ReactionButtonGroup = () => {
           name="reaction"
           value="dislike"
           checked={reaction === 'dislike'}
-          onChange={() => setReaction('dislike')}
+          onClick={() => toggleReaction('dislike')}
           className="sr-only"
           aria-label="Поставить дизлайк"
         />
@@ -76,4 +94,4 @@ const ReactionButtonGroup = () => {
   );
 };
 
-export default ReactionButtonGroup;
+export default ReactionButtonGroupForComment;

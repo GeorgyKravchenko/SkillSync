@@ -12,5 +12,11 @@ class CommentService {
   static async deleteComment(id: number) {
     return await api.delete(`${this.API_PREFIX}/${id}`);
   }
+  static async addLikeForComment(commentId: number) {
+    return await api.post(`${this.API_PREFIX}/${commentId}/like`);
+  }
+  static async addDislikeForComment(commentId: number) {
+    return await api.post(`${this.API_PREFIX}/${commentId}/dislike`);
+  }
 }
 export default CommentService;

@@ -21,6 +21,12 @@ class PostsService {
   static async getPostsByTopic(topicId: number) {
     return await api.get<IPost[]>(`${this.API_URL}/topic/${topicId}`);
   }
+  static async addLikeForPost(postId: number) {
+    return await api.post(`${this.API_URL}/${postId}/like`);
+  }
+  static async addDislikeForPost(postId: number) {
+    return await api.post(`${this.API_URL}/${postId}/dislike`);
+  }
 }
 
 export default PostsService;

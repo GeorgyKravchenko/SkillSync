@@ -7,6 +7,7 @@ import useAuthStore from '@/lib/store/user';
 import OwnerKebabMenu from './kebabMenu/OwnerKebabMenu';
 import { useState } from 'react';
 import useUpdateComment from '@/hooks/comment/useUpdateComment';
+import ReactionButtonGroupForComment from './reactionButtons/ReactionButtonGroupForComment';
 
 type Props = {
   comment: IComment;
@@ -46,6 +47,7 @@ export default function CommentItem({ comment, postId }: Props) {
               {comment.author.name}
             </h4>
             <span className="text-xs text-gray-500 dark:text-gray-400 ml-2 whitespace-nowrap">
+              {comment.createdAt !== comment.updatedAt && '(редаговано) '}
               {formatDistanceToNow(comment.createdAt, {
                 addSuffix: true,
                 locale: uk,
@@ -77,7 +79,10 @@ export default function CommentItem({ comment, postId }: Props) {
               </div>
             </form>
           ) : (
-            <p className="text-gray-700 dark:text-gray-300">{comment.content}</p>
+            <>
+              <p className="text-gray-700 dark:text-gray-300">{comment.content}</p>
+              <ReactionButtonGroupForComment commentId={comment.id} postId={postId} />
+            </>
           )}
         </div>
 
