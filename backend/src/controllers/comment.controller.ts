@@ -55,5 +55,41 @@ const commentController = {
       res.status(500).json({ message: 'Error deleting comment' });
     }
   },
+  addLikeForComment: async (req: Request, res: Response) => {
+    try {
+      const commentId = parseInt(req.params.id);
+      const userId = req.user?.id;
+      if (isNaN(commentId)) {
+        res.status(400).json({ message: 'Invalid comment ID' });
+        return;
+      }
+      if (!userId) {
+        res.status(401).json({ message: 'Требуется аутентификация' });
+        return;
+      }
+      const updatedComment = await commentService.addLikeForComment(commentId, userId);
+      res.status(200).json(updatedComment);
+    } catch (error) {
+      res.status(500).json({ message: 'Error liking comment' });
+    }
+  },
+  addDislikeForComment: async (req: Request, res: Response) => {
+    try {
+      const commentId = parseInt(req.params.id);
+      const userId = req.user?.id;
+      if (isNaN(commentId)) {
+        res.status(400).json({ message: 'Invalid comment ID' });
+        return;
+      }
+      if (!userId) {
+        res.status(401).json({ message: 'Требуется аутентификация' });
+        return;
+      }
+      const updatedComment = await commentService.addDisLikeForComment(commentId, userId);
+      res.status(200).json(updatedComment);
+    } catch (error) {
+      res.status(500).json({ message: 'Error disliking comment' });
+    }
+  },
 };
 export default commentController;

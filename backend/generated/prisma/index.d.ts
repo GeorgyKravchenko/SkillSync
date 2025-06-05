@@ -303,8 +303,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.8.2
-   * Query Engine version: 2060c79ba17c6bb9f5823312b6f6b7f4a845738e
+   * Prisma Client JS version: 6.9.0
+   * Query Engine version: 81e4af48011447c3cc503a190e86995b66d2a28e
    */
   export type PrismaVersion = {
     client: string
@@ -2697,12 +2697,16 @@ export namespace Prisma {
   export type PostAvgAggregateOutputType = {
     id: number | null
     authorId: number | null
+    likesCount: number | null
+    dislikesCount: number | null
     topicId: number | null
   }
 
   export type PostSumAggregateOutputType = {
     id: number | null
     authorId: number | null
+    likesCount: number | null
+    dislikesCount: number | null
     topicId: number | null
   }
 
@@ -2713,6 +2717,8 @@ export namespace Prisma {
     authorId: number | null
     createdAt: Date | null
     updatedAt: Date | null
+    likesCount: number | null
+    dislikesCount: number | null
     topicId: number | null
   }
 
@@ -2723,6 +2729,8 @@ export namespace Prisma {
     authorId: number | null
     createdAt: Date | null
     updatedAt: Date | null
+    likesCount: number | null
+    dislikesCount: number | null
     topicId: number | null
   }
 
@@ -2733,6 +2741,8 @@ export namespace Prisma {
     authorId: number
     createdAt: number
     updatedAt: number
+    likesCount: number
+    dislikesCount: number
     topicId: number
     _all: number
   }
@@ -2741,12 +2751,16 @@ export namespace Prisma {
   export type PostAvgAggregateInputType = {
     id?: true
     authorId?: true
+    likesCount?: true
+    dislikesCount?: true
     topicId?: true
   }
 
   export type PostSumAggregateInputType = {
     id?: true
     authorId?: true
+    likesCount?: true
+    dislikesCount?: true
     topicId?: true
   }
 
@@ -2757,6 +2771,8 @@ export namespace Prisma {
     authorId?: true
     createdAt?: true
     updatedAt?: true
+    likesCount?: true
+    dislikesCount?: true
     topicId?: true
   }
 
@@ -2767,6 +2783,8 @@ export namespace Prisma {
     authorId?: true
     createdAt?: true
     updatedAt?: true
+    likesCount?: true
+    dislikesCount?: true
     topicId?: true
   }
 
@@ -2777,6 +2795,8 @@ export namespace Prisma {
     authorId?: true
     createdAt?: true
     updatedAt?: true
+    likesCount?: true
+    dislikesCount?: true
     topicId?: true
     _all?: true
   }
@@ -2874,6 +2894,8 @@ export namespace Prisma {
     authorId: number
     createdAt: Date
     updatedAt: Date
+    likesCount: number
+    dislikesCount: number
     topicId: number
     _count: PostCountAggregateOutputType | null
     _avg: PostAvgAggregateOutputType | null
@@ -2903,6 +2925,8 @@ export namespace Prisma {
     authorId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    likesCount?: boolean
+    dislikesCount?: boolean
     topicId?: boolean
     author?: boolean | UserDefaultArgs<ExtArgs>
     topic?: boolean | TopicDefaultArgs<ExtArgs>
@@ -2918,6 +2942,8 @@ export namespace Prisma {
     authorId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    likesCount?: boolean
+    dislikesCount?: boolean
     topicId?: boolean
     author?: boolean | UserDefaultArgs<ExtArgs>
     topic?: boolean | TopicDefaultArgs<ExtArgs>
@@ -2930,6 +2956,8 @@ export namespace Prisma {
     authorId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    likesCount?: boolean
+    dislikesCount?: boolean
     topicId?: boolean
     author?: boolean | UserDefaultArgs<ExtArgs>
     topic?: boolean | TopicDefaultArgs<ExtArgs>
@@ -2942,10 +2970,12 @@ export namespace Prisma {
     authorId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    likesCount?: boolean
+    dislikesCount?: boolean
     topicId?: boolean
   }
 
-  export type PostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "content" | "authorId" | "createdAt" | "updatedAt" | "topicId", ExtArgs["result"]["post"]>
+  export type PostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "content" | "authorId" | "createdAt" | "updatedAt" | "likesCount" | "dislikesCount" | "topicId", ExtArgs["result"]["post"]>
   export type PostInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     author?: boolean | UserDefaultArgs<ExtArgs>
     topic?: boolean | TopicDefaultArgs<ExtArgs>
@@ -2977,6 +3007,8 @@ export namespace Prisma {
       authorId: number
       createdAt: Date
       updatedAt: Date
+      likesCount: number
+      dislikesCount: number
       topicId: number
     }, ExtArgs["result"]["post"]>
     composites: {}
@@ -3411,6 +3443,8 @@ export namespace Prisma {
     readonly authorId: FieldRef<"Post", 'Int'>
     readonly createdAt: FieldRef<"Post", 'DateTime'>
     readonly updatedAt: FieldRef<"Post", 'DateTime'>
+    readonly likesCount: FieldRef<"Post", 'Int'>
+    readonly dislikesCount: FieldRef<"Post", 'Int'>
     readonly topicId: FieldRef<"Post", 'Int'>
   }
     
@@ -4968,12 +5002,16 @@ export namespace Prisma {
     id: number | null
     postId: number | null
     authorId: number | null
+    likesCount: number | null
+    dislikesCount: number | null
   }
 
   export type CommentSumAggregateOutputType = {
     id: number | null
     postId: number | null
     authorId: number | null
+    likesCount: number | null
+    dislikesCount: number | null
   }
 
   export type CommentMinAggregateOutputType = {
@@ -4981,6 +5019,8 @@ export namespace Prisma {
     content: string | null
     postId: number | null
     authorId: number | null
+    likesCount: number | null
+    dislikesCount: number | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -4990,6 +5030,8 @@ export namespace Prisma {
     content: string | null
     postId: number | null
     authorId: number | null
+    likesCount: number | null
+    dislikesCount: number | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -4999,6 +5041,8 @@ export namespace Prisma {
     content: number
     postId: number
     authorId: number
+    likesCount: number
+    dislikesCount: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -5009,12 +5053,16 @@ export namespace Prisma {
     id?: true
     postId?: true
     authorId?: true
+    likesCount?: true
+    dislikesCount?: true
   }
 
   export type CommentSumAggregateInputType = {
     id?: true
     postId?: true
     authorId?: true
+    likesCount?: true
+    dislikesCount?: true
   }
 
   export type CommentMinAggregateInputType = {
@@ -5022,6 +5070,8 @@ export namespace Prisma {
     content?: true
     postId?: true
     authorId?: true
+    likesCount?: true
+    dislikesCount?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -5031,6 +5081,8 @@ export namespace Prisma {
     content?: true
     postId?: true
     authorId?: true
+    likesCount?: true
+    dislikesCount?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -5040,6 +5092,8 @@ export namespace Prisma {
     content?: true
     postId?: true
     authorId?: true
+    likesCount?: true
+    dislikesCount?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -5136,6 +5190,8 @@ export namespace Prisma {
     content: string
     postId: number
     authorId: number
+    likesCount: number
+    dislikesCount: number
     createdAt: Date
     updatedAt: Date
     _count: CommentCountAggregateOutputType | null
@@ -5164,6 +5220,8 @@ export namespace Prisma {
     content?: boolean
     postId?: boolean
     authorId?: boolean
+    likesCount?: boolean
+    dislikesCount?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     post?: boolean | PostDefaultArgs<ExtArgs>
@@ -5176,6 +5234,8 @@ export namespace Prisma {
     content?: boolean
     postId?: boolean
     authorId?: boolean
+    likesCount?: boolean
+    dislikesCount?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     post?: boolean | PostDefaultArgs<ExtArgs>
@@ -5187,6 +5247,8 @@ export namespace Prisma {
     content?: boolean
     postId?: boolean
     authorId?: boolean
+    likesCount?: boolean
+    dislikesCount?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     post?: boolean | PostDefaultArgs<ExtArgs>
@@ -5198,11 +5260,13 @@ export namespace Prisma {
     content?: boolean
     postId?: boolean
     authorId?: boolean
+    likesCount?: boolean
+    dislikesCount?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type CommentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "content" | "postId" | "authorId" | "createdAt" | "updatedAt", ExtArgs["result"]["comment"]>
+  export type CommentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "content" | "postId" | "authorId" | "likesCount" | "dislikesCount" | "createdAt" | "updatedAt", ExtArgs["result"]["comment"]>
   export type CommentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     post?: boolean | PostDefaultArgs<ExtArgs>
     author?: boolean | UserDefaultArgs<ExtArgs>
@@ -5229,6 +5293,8 @@ export namespace Prisma {
       content: string
       postId: number
       authorId: number
+      likesCount: number
+      dislikesCount: number
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["comment"]>
@@ -5661,6 +5727,8 @@ export namespace Prisma {
     readonly content: FieldRef<"Comment", 'String'>
     readonly postId: FieldRef<"Comment", 'Int'>
     readonly authorId: FieldRef<"Comment", 'Int'>
+    readonly likesCount: FieldRef<"Comment", 'Int'>
+    readonly dislikesCount: FieldRef<"Comment", 'Int'>
     readonly createdAt: FieldRef<"Comment", 'DateTime'>
     readonly updatedAt: FieldRef<"Comment", 'DateTime'>
   }
@@ -6112,24 +6180,18 @@ export namespace Prisma {
     id: number | null
     postId: number | null
     authorId: number | null
-    likesCount: number | null
-    dislikesCount: number | null
   }
 
   export type PostReactionSumAggregateOutputType = {
     id: number | null
     postId: number | null
     authorId: number | null
-    likesCount: number | null
-    dislikesCount: number | null
   }
 
   export type PostReactionMinAggregateOutputType = {
     id: number | null
     postId: number | null
     authorId: number | null
-    likesCount: number | null
-    dislikesCount: number | null
     reaction: $Enums.Reaction | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -6139,8 +6201,6 @@ export namespace Prisma {
     id: number | null
     postId: number | null
     authorId: number | null
-    likesCount: number | null
-    dislikesCount: number | null
     reaction: $Enums.Reaction | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -6150,8 +6210,6 @@ export namespace Prisma {
     id: number
     postId: number
     authorId: number
-    likesCount: number
-    dislikesCount: number
     reaction: number
     createdAt: number
     updatedAt: number
@@ -6163,24 +6221,18 @@ export namespace Prisma {
     id?: true
     postId?: true
     authorId?: true
-    likesCount?: true
-    dislikesCount?: true
   }
 
   export type PostReactionSumAggregateInputType = {
     id?: true
     postId?: true
     authorId?: true
-    likesCount?: true
-    dislikesCount?: true
   }
 
   export type PostReactionMinAggregateInputType = {
     id?: true
     postId?: true
     authorId?: true
-    likesCount?: true
-    dislikesCount?: true
     reaction?: true
     createdAt?: true
     updatedAt?: true
@@ -6190,8 +6242,6 @@ export namespace Prisma {
     id?: true
     postId?: true
     authorId?: true
-    likesCount?: true
-    dislikesCount?: true
     reaction?: true
     createdAt?: true
     updatedAt?: true
@@ -6201,8 +6251,6 @@ export namespace Prisma {
     id?: true
     postId?: true
     authorId?: true
-    likesCount?: true
-    dislikesCount?: true
     reaction?: true
     createdAt?: true
     updatedAt?: true
@@ -6299,8 +6347,6 @@ export namespace Prisma {
     id: number
     postId: number
     authorId: number
-    likesCount: number
-    dislikesCount: number
     reaction: $Enums.Reaction
     createdAt: Date
     updatedAt: Date
@@ -6329,8 +6375,6 @@ export namespace Prisma {
     id?: boolean
     postId?: boolean
     authorId?: boolean
-    likesCount?: boolean
-    dislikesCount?: boolean
     reaction?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -6342,8 +6386,6 @@ export namespace Prisma {
     id?: boolean
     postId?: boolean
     authorId?: boolean
-    likesCount?: boolean
-    dislikesCount?: boolean
     reaction?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -6355,8 +6397,6 @@ export namespace Prisma {
     id?: boolean
     postId?: boolean
     authorId?: boolean
-    likesCount?: boolean
-    dislikesCount?: boolean
     reaction?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -6368,14 +6408,12 @@ export namespace Prisma {
     id?: boolean
     postId?: boolean
     authorId?: boolean
-    likesCount?: boolean
-    dislikesCount?: boolean
     reaction?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type PostReactionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "postId" | "authorId" | "likesCount" | "dislikesCount" | "reaction" | "createdAt" | "updatedAt", ExtArgs["result"]["postReaction"]>
+  export type PostReactionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "postId" | "authorId" | "reaction" | "createdAt" | "updatedAt", ExtArgs["result"]["postReaction"]>
   export type PostReactionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     post?: boolean | PostDefaultArgs<ExtArgs>
     author?: boolean | UserDefaultArgs<ExtArgs>
@@ -6399,8 +6437,6 @@ export namespace Prisma {
       id: number
       postId: number
       authorId: number
-      likesCount: number
-      dislikesCount: number
       reaction: $Enums.Reaction
       createdAt: Date
       updatedAt: Date
@@ -6832,8 +6868,6 @@ export namespace Prisma {
     readonly id: FieldRef<"PostReaction", 'Int'>
     readonly postId: FieldRef<"PostReaction", 'Int'>
     readonly authorId: FieldRef<"PostReaction", 'Int'>
-    readonly likesCount: FieldRef<"PostReaction", 'Int'>
-    readonly dislikesCount: FieldRef<"PostReaction", 'Int'>
     readonly reaction: FieldRef<"PostReaction", 'Reaction'>
     readonly createdAt: FieldRef<"PostReaction", 'DateTime'>
     readonly updatedAt: FieldRef<"PostReaction", 'DateTime'>
@@ -7267,24 +7301,18 @@ export namespace Prisma {
     id: number | null
     commentId: number | null
     authorId: number | null
-    likesCount: number | null
-    dislikesCount: number | null
   }
 
   export type CommentReactionSumAggregateOutputType = {
     id: number | null
     commentId: number | null
     authorId: number | null
-    likesCount: number | null
-    dislikesCount: number | null
   }
 
   export type CommentReactionMinAggregateOutputType = {
     id: number | null
     commentId: number | null
     authorId: number | null
-    likesCount: number | null
-    dislikesCount: number | null
     reaction: $Enums.Reaction | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -7294,8 +7322,6 @@ export namespace Prisma {
     id: number | null
     commentId: number | null
     authorId: number | null
-    likesCount: number | null
-    dislikesCount: number | null
     reaction: $Enums.Reaction | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -7305,8 +7331,6 @@ export namespace Prisma {
     id: number
     commentId: number
     authorId: number
-    likesCount: number
-    dislikesCount: number
     reaction: number
     createdAt: number
     updatedAt: number
@@ -7318,24 +7342,18 @@ export namespace Prisma {
     id?: true
     commentId?: true
     authorId?: true
-    likesCount?: true
-    dislikesCount?: true
   }
 
   export type CommentReactionSumAggregateInputType = {
     id?: true
     commentId?: true
     authorId?: true
-    likesCount?: true
-    dislikesCount?: true
   }
 
   export type CommentReactionMinAggregateInputType = {
     id?: true
     commentId?: true
     authorId?: true
-    likesCount?: true
-    dislikesCount?: true
     reaction?: true
     createdAt?: true
     updatedAt?: true
@@ -7345,8 +7363,6 @@ export namespace Prisma {
     id?: true
     commentId?: true
     authorId?: true
-    likesCount?: true
-    dislikesCount?: true
     reaction?: true
     createdAt?: true
     updatedAt?: true
@@ -7356,8 +7372,6 @@ export namespace Prisma {
     id?: true
     commentId?: true
     authorId?: true
-    likesCount?: true
-    dislikesCount?: true
     reaction?: true
     createdAt?: true
     updatedAt?: true
@@ -7454,8 +7468,6 @@ export namespace Prisma {
     id: number
     commentId: number
     authorId: number
-    likesCount: number
-    dislikesCount: number
     reaction: $Enums.Reaction
     createdAt: Date
     updatedAt: Date
@@ -7484,8 +7496,6 @@ export namespace Prisma {
     id?: boolean
     commentId?: boolean
     authorId?: boolean
-    likesCount?: boolean
-    dislikesCount?: boolean
     reaction?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -7497,8 +7507,6 @@ export namespace Prisma {
     id?: boolean
     commentId?: boolean
     authorId?: boolean
-    likesCount?: boolean
-    dislikesCount?: boolean
     reaction?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -7510,8 +7518,6 @@ export namespace Prisma {
     id?: boolean
     commentId?: boolean
     authorId?: boolean
-    likesCount?: boolean
-    dislikesCount?: boolean
     reaction?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -7523,14 +7529,12 @@ export namespace Prisma {
     id?: boolean
     commentId?: boolean
     authorId?: boolean
-    likesCount?: boolean
-    dislikesCount?: boolean
     reaction?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type CommentReactionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "commentId" | "authorId" | "likesCount" | "dislikesCount" | "reaction" | "createdAt" | "updatedAt", ExtArgs["result"]["commentReaction"]>
+  export type CommentReactionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "commentId" | "authorId" | "reaction" | "createdAt" | "updatedAt", ExtArgs["result"]["commentReaction"]>
   export type CommentReactionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     comment?: boolean | CommentDefaultArgs<ExtArgs>
     author?: boolean | UserDefaultArgs<ExtArgs>
@@ -7554,8 +7558,6 @@ export namespace Prisma {
       id: number
       commentId: number
       authorId: number
-      likesCount: number
-      dislikesCount: number
       reaction: $Enums.Reaction
       createdAt: Date
       updatedAt: Date
@@ -7987,8 +7989,6 @@ export namespace Prisma {
     readonly id: FieldRef<"CommentReaction", 'Int'>
     readonly commentId: FieldRef<"CommentReaction", 'Int'>
     readonly authorId: FieldRef<"CommentReaction", 'Int'>
-    readonly likesCount: FieldRef<"CommentReaction", 'Int'>
-    readonly dislikesCount: FieldRef<"CommentReaction", 'Int'>
     readonly reaction: FieldRef<"CommentReaction", 'Reaction'>
     readonly createdAt: FieldRef<"CommentReaction", 'DateTime'>
     readonly updatedAt: FieldRef<"CommentReaction", 'DateTime'>
@@ -8441,6 +8441,8 @@ export namespace Prisma {
     authorId: 'authorId',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
+    likesCount: 'likesCount',
+    dislikesCount: 'dislikesCount',
     topicId: 'topicId'
   };
 
@@ -8461,6 +8463,8 @@ export namespace Prisma {
     content: 'content',
     postId: 'postId',
     authorId: 'authorId',
+    likesCount: 'likesCount',
+    dislikesCount: 'dislikesCount',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -8472,8 +8476,6 @@ export namespace Prisma {
     id: 'id',
     postId: 'postId',
     authorId: 'authorId',
-    likesCount: 'likesCount',
-    dislikesCount: 'dislikesCount',
     reaction: 'reaction',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -8486,8 +8488,6 @@ export namespace Prisma {
     id: 'id',
     commentId: 'commentId',
     authorId: 'authorId',
-    likesCount: 'likesCount',
-    dislikesCount: 'dislikesCount',
     reaction: 'reaction',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -8689,6 +8689,8 @@ export namespace Prisma {
     authorId?: IntFilter<"Post"> | number
     createdAt?: DateTimeFilter<"Post"> | Date | string
     updatedAt?: DateTimeFilter<"Post"> | Date | string
+    likesCount?: IntFilter<"Post"> | number
+    dislikesCount?: IntFilter<"Post"> | number
     topicId?: IntFilter<"Post"> | number
     author?: XOR<UserScalarRelationFilter, UserWhereInput>
     topic?: XOR<TopicScalarRelationFilter, TopicWhereInput>
@@ -8703,6 +8705,8 @@ export namespace Prisma {
     authorId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    likesCount?: SortOrder
+    dislikesCount?: SortOrder
     topicId?: SortOrder
     author?: UserOrderByWithRelationInput
     topic?: TopicOrderByWithRelationInput
@@ -8720,6 +8724,8 @@ export namespace Prisma {
     authorId?: IntFilter<"Post"> | number
     createdAt?: DateTimeFilter<"Post"> | Date | string
     updatedAt?: DateTimeFilter<"Post"> | Date | string
+    likesCount?: IntFilter<"Post"> | number
+    dislikesCount?: IntFilter<"Post"> | number
     topicId?: IntFilter<"Post"> | number
     author?: XOR<UserScalarRelationFilter, UserWhereInput>
     topic?: XOR<TopicScalarRelationFilter, TopicWhereInput>
@@ -8734,6 +8740,8 @@ export namespace Prisma {
     authorId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    likesCount?: SortOrder
+    dislikesCount?: SortOrder
     topicId?: SortOrder
     _count?: PostCountOrderByAggregateInput
     _avg?: PostAvgOrderByAggregateInput
@@ -8752,6 +8760,8 @@ export namespace Prisma {
     authorId?: IntWithAggregatesFilter<"Post"> | number
     createdAt?: DateTimeWithAggregatesFilter<"Post"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Post"> | Date | string
+    likesCount?: IntWithAggregatesFilter<"Post"> | number
+    dislikesCount?: IntWithAggregatesFilter<"Post"> | number
     topicId?: IntWithAggregatesFilter<"Post"> | number
   }
 
@@ -8810,6 +8820,8 @@ export namespace Prisma {
     content?: StringFilter<"Comment"> | string
     postId?: IntFilter<"Comment"> | number
     authorId?: IntFilter<"Comment"> | number
+    likesCount?: IntFilter<"Comment"> | number
+    dislikesCount?: IntFilter<"Comment"> | number
     createdAt?: DateTimeFilter<"Comment"> | Date | string
     updatedAt?: DateTimeFilter<"Comment"> | Date | string
     post?: XOR<PostScalarRelationFilter, PostWhereInput>
@@ -8822,6 +8834,8 @@ export namespace Prisma {
     content?: SortOrder
     postId?: SortOrder
     authorId?: SortOrder
+    likesCount?: SortOrder
+    dislikesCount?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     post?: PostOrderByWithRelationInput
@@ -8837,6 +8851,8 @@ export namespace Prisma {
     content?: StringFilter<"Comment"> | string
     postId?: IntFilter<"Comment"> | number
     authorId?: IntFilter<"Comment"> | number
+    likesCount?: IntFilter<"Comment"> | number
+    dislikesCount?: IntFilter<"Comment"> | number
     createdAt?: DateTimeFilter<"Comment"> | Date | string
     updatedAt?: DateTimeFilter<"Comment"> | Date | string
     post?: XOR<PostScalarRelationFilter, PostWhereInput>
@@ -8849,6 +8865,8 @@ export namespace Prisma {
     content?: SortOrder
     postId?: SortOrder
     authorId?: SortOrder
+    likesCount?: SortOrder
+    dislikesCount?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: CommentCountOrderByAggregateInput
@@ -8866,6 +8884,8 @@ export namespace Prisma {
     content?: StringWithAggregatesFilter<"Comment"> | string
     postId?: IntWithAggregatesFilter<"Comment"> | number
     authorId?: IntWithAggregatesFilter<"Comment"> | number
+    likesCount?: IntWithAggregatesFilter<"Comment"> | number
+    dislikesCount?: IntWithAggregatesFilter<"Comment"> | number
     createdAt?: DateTimeWithAggregatesFilter<"Comment"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Comment"> | Date | string
   }
@@ -8877,8 +8897,6 @@ export namespace Prisma {
     id?: IntFilter<"PostReaction"> | number
     postId?: IntFilter<"PostReaction"> | number
     authorId?: IntFilter<"PostReaction"> | number
-    likesCount?: IntFilter<"PostReaction"> | number
-    dislikesCount?: IntFilter<"PostReaction"> | number
     reaction?: EnumReactionFilter<"PostReaction"> | $Enums.Reaction
     createdAt?: DateTimeFilter<"PostReaction"> | Date | string
     updatedAt?: DateTimeFilter<"PostReaction"> | Date | string
@@ -8890,8 +8908,6 @@ export namespace Prisma {
     id?: SortOrder
     postId?: SortOrder
     authorId?: SortOrder
-    likesCount?: SortOrder
-    dislikesCount?: SortOrder
     reaction?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -8903,24 +8919,21 @@ export namespace Prisma {
     id?: number
     postId?: number
     authorId?: number
+    postId_authorId?: PostReactionPostIdAuthorIdCompoundUniqueInput
     AND?: PostReactionWhereInput | PostReactionWhereInput[]
     OR?: PostReactionWhereInput[]
     NOT?: PostReactionWhereInput | PostReactionWhereInput[]
-    likesCount?: IntFilter<"PostReaction"> | number
-    dislikesCount?: IntFilter<"PostReaction"> | number
     reaction?: EnumReactionFilter<"PostReaction"> | $Enums.Reaction
     createdAt?: DateTimeFilter<"PostReaction"> | Date | string
     updatedAt?: DateTimeFilter<"PostReaction"> | Date | string
     post?: XOR<PostScalarRelationFilter, PostWhereInput>
     author?: XOR<UserScalarRelationFilter, UserWhereInput>
-  }, "id" | "postId" | "authorId">
+  }, "id" | "postId" | "authorId" | "postId_authorId">
 
   export type PostReactionOrderByWithAggregationInput = {
     id?: SortOrder
     postId?: SortOrder
     authorId?: SortOrder
-    likesCount?: SortOrder
-    dislikesCount?: SortOrder
     reaction?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -8938,8 +8951,6 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"PostReaction"> | number
     postId?: IntWithAggregatesFilter<"PostReaction"> | number
     authorId?: IntWithAggregatesFilter<"PostReaction"> | number
-    likesCount?: IntWithAggregatesFilter<"PostReaction"> | number
-    dislikesCount?: IntWithAggregatesFilter<"PostReaction"> | number
     reaction?: EnumReactionWithAggregatesFilter<"PostReaction"> | $Enums.Reaction
     createdAt?: DateTimeWithAggregatesFilter<"PostReaction"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"PostReaction"> | Date | string
@@ -8952,8 +8963,6 @@ export namespace Prisma {
     id?: IntFilter<"CommentReaction"> | number
     commentId?: IntFilter<"CommentReaction"> | number
     authorId?: IntFilter<"CommentReaction"> | number
-    likesCount?: IntFilter<"CommentReaction"> | number
-    dislikesCount?: IntFilter<"CommentReaction"> | number
     reaction?: EnumReactionFilter<"CommentReaction"> | $Enums.Reaction
     createdAt?: DateTimeFilter<"CommentReaction"> | Date | string
     updatedAt?: DateTimeFilter<"CommentReaction"> | Date | string
@@ -8965,8 +8974,6 @@ export namespace Prisma {
     id?: SortOrder
     commentId?: SortOrder
     authorId?: SortOrder
-    likesCount?: SortOrder
-    dislikesCount?: SortOrder
     reaction?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -8978,24 +8985,21 @@ export namespace Prisma {
     id?: number
     commentId?: number
     authorId?: number
+    commentId_authorId?: CommentReactionCommentIdAuthorIdCompoundUniqueInput
     AND?: CommentReactionWhereInput | CommentReactionWhereInput[]
     OR?: CommentReactionWhereInput[]
     NOT?: CommentReactionWhereInput | CommentReactionWhereInput[]
-    likesCount?: IntFilter<"CommentReaction"> | number
-    dislikesCount?: IntFilter<"CommentReaction"> | number
     reaction?: EnumReactionFilter<"CommentReaction"> | $Enums.Reaction
     createdAt?: DateTimeFilter<"CommentReaction"> | Date | string
     updatedAt?: DateTimeFilter<"CommentReaction"> | Date | string
     comment?: XOR<CommentScalarRelationFilter, CommentWhereInput>
     author?: XOR<UserScalarRelationFilter, UserWhereInput>
-  }, "id" | "commentId" | "authorId">
+  }, "id" | "commentId" | "authorId" | "commentId_authorId">
 
   export type CommentReactionOrderByWithAggregationInput = {
     id?: SortOrder
     commentId?: SortOrder
     authorId?: SortOrder
-    likesCount?: SortOrder
-    dislikesCount?: SortOrder
     reaction?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -9013,8 +9017,6 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"CommentReaction"> | number
     commentId?: IntWithAggregatesFilter<"CommentReaction"> | number
     authorId?: IntWithAggregatesFilter<"CommentReaction"> | number
-    likesCount?: IntWithAggregatesFilter<"CommentReaction"> | number
-    dislikesCount?: IntWithAggregatesFilter<"CommentReaction"> | number
     reaction?: EnumReactionWithAggregatesFilter<"CommentReaction"> | $Enums.Reaction
     createdAt?: DateTimeWithAggregatesFilter<"CommentReaction"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"CommentReaction"> | Date | string
@@ -9115,6 +9117,8 @@ export namespace Prisma {
     content?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    likesCount?: number
+    dislikesCount?: number
     author: UserCreateNestedOneWithoutPostsInput
     topic: TopicCreateNestedOneWithoutPostsInput
     comments?: CommentCreateNestedManyWithoutPostInput
@@ -9128,6 +9132,8 @@ export namespace Prisma {
     authorId: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    likesCount?: number
+    dislikesCount?: number
     topicId: number
     comments?: CommentUncheckedCreateNestedManyWithoutPostInput
     PostReaction?: PostReactionUncheckedCreateNestedManyWithoutPostInput
@@ -9138,6 +9144,8 @@ export namespace Prisma {
     content?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    likesCount?: IntFieldUpdateOperationsInput | number
+    dislikesCount?: IntFieldUpdateOperationsInput | number
     author?: UserUpdateOneRequiredWithoutPostsNestedInput
     topic?: TopicUpdateOneRequiredWithoutPostsNestedInput
     comments?: CommentUpdateManyWithoutPostNestedInput
@@ -9151,6 +9159,8 @@ export namespace Prisma {
     authorId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    likesCount?: IntFieldUpdateOperationsInput | number
+    dislikesCount?: IntFieldUpdateOperationsInput | number
     topicId?: IntFieldUpdateOperationsInput | number
     comments?: CommentUncheckedUpdateManyWithoutPostNestedInput
     PostReaction?: PostReactionUncheckedUpdateManyWithoutPostNestedInput
@@ -9163,6 +9173,8 @@ export namespace Prisma {
     authorId: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    likesCount?: number
+    dislikesCount?: number
     topicId: number
   }
 
@@ -9171,6 +9183,8 @@ export namespace Prisma {
     content?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    likesCount?: IntFieldUpdateOperationsInput | number
+    dislikesCount?: IntFieldUpdateOperationsInput | number
   }
 
   export type PostUncheckedUpdateManyInput = {
@@ -9180,6 +9194,8 @@ export namespace Prisma {
     authorId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    likesCount?: IntFieldUpdateOperationsInput | number
+    dislikesCount?: IntFieldUpdateOperationsInput | number
     topicId?: IntFieldUpdateOperationsInput | number
   }
 
@@ -9228,6 +9244,8 @@ export namespace Prisma {
 
   export type CommentCreateInput = {
     content: string
+    likesCount?: number
+    dislikesCount?: number
     createdAt?: Date | string
     updatedAt?: Date | string
     post: PostCreateNestedOneWithoutCommentsInput
@@ -9240,6 +9258,8 @@ export namespace Prisma {
     content: string
     postId: number
     authorId: number
+    likesCount?: number
+    dislikesCount?: number
     createdAt?: Date | string
     updatedAt?: Date | string
     CommentReaction?: CommentReactionUncheckedCreateNestedOneWithoutCommentInput
@@ -9247,6 +9267,8 @@ export namespace Prisma {
 
   export type CommentUpdateInput = {
     content?: StringFieldUpdateOperationsInput | string
+    likesCount?: IntFieldUpdateOperationsInput | number
+    dislikesCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     post?: PostUpdateOneRequiredWithoutCommentsNestedInput
@@ -9259,6 +9281,8 @@ export namespace Prisma {
     content?: StringFieldUpdateOperationsInput | string
     postId?: IntFieldUpdateOperationsInput | number
     authorId?: IntFieldUpdateOperationsInput | number
+    likesCount?: IntFieldUpdateOperationsInput | number
+    dislikesCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     CommentReaction?: CommentReactionUncheckedUpdateOneWithoutCommentNestedInput
@@ -9269,12 +9293,16 @@ export namespace Prisma {
     content: string
     postId: number
     authorId: number
+    likesCount?: number
+    dislikesCount?: number
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type CommentUpdateManyMutationInput = {
     content?: StringFieldUpdateOperationsInput | string
+    likesCount?: IntFieldUpdateOperationsInput | number
+    dislikesCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -9284,13 +9312,13 @@ export namespace Prisma {
     content?: StringFieldUpdateOperationsInput | string
     postId?: IntFieldUpdateOperationsInput | number
     authorId?: IntFieldUpdateOperationsInput | number
+    likesCount?: IntFieldUpdateOperationsInput | number
+    dislikesCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PostReactionCreateInput = {
-    likesCount?: number
-    dislikesCount?: number
     reaction: $Enums.Reaction
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -9302,16 +9330,12 @@ export namespace Prisma {
     id?: number
     postId: number
     authorId: number
-    likesCount?: number
-    dislikesCount?: number
     reaction: $Enums.Reaction
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type PostReactionUpdateInput = {
-    likesCount?: IntFieldUpdateOperationsInput | number
-    dislikesCount?: IntFieldUpdateOperationsInput | number
     reaction?: EnumReactionFieldUpdateOperationsInput | $Enums.Reaction
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9323,8 +9347,6 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     postId?: IntFieldUpdateOperationsInput | number
     authorId?: IntFieldUpdateOperationsInput | number
-    likesCount?: IntFieldUpdateOperationsInput | number
-    dislikesCount?: IntFieldUpdateOperationsInput | number
     reaction?: EnumReactionFieldUpdateOperationsInput | $Enums.Reaction
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9334,16 +9356,12 @@ export namespace Prisma {
     id?: number
     postId: number
     authorId: number
-    likesCount?: number
-    dislikesCount?: number
     reaction: $Enums.Reaction
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type PostReactionUpdateManyMutationInput = {
-    likesCount?: IntFieldUpdateOperationsInput | number
-    dislikesCount?: IntFieldUpdateOperationsInput | number
     reaction?: EnumReactionFieldUpdateOperationsInput | $Enums.Reaction
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9353,16 +9371,12 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     postId?: IntFieldUpdateOperationsInput | number
     authorId?: IntFieldUpdateOperationsInput | number
-    likesCount?: IntFieldUpdateOperationsInput | number
-    dislikesCount?: IntFieldUpdateOperationsInput | number
     reaction?: EnumReactionFieldUpdateOperationsInput | $Enums.Reaction
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CommentReactionCreateInput = {
-    likesCount?: number
-    dislikesCount?: number
     reaction: $Enums.Reaction
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -9374,16 +9388,12 @@ export namespace Prisma {
     id?: number
     commentId: number
     authorId: number
-    likesCount?: number
-    dislikesCount?: number
     reaction: $Enums.Reaction
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type CommentReactionUpdateInput = {
-    likesCount?: IntFieldUpdateOperationsInput | number
-    dislikesCount?: IntFieldUpdateOperationsInput | number
     reaction?: EnumReactionFieldUpdateOperationsInput | $Enums.Reaction
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9395,8 +9405,6 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     commentId?: IntFieldUpdateOperationsInput | number
     authorId?: IntFieldUpdateOperationsInput | number
-    likesCount?: IntFieldUpdateOperationsInput | number
-    dislikesCount?: IntFieldUpdateOperationsInput | number
     reaction?: EnumReactionFieldUpdateOperationsInput | $Enums.Reaction
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9406,16 +9414,12 @@ export namespace Prisma {
     id?: number
     commentId: number
     authorId: number
-    likesCount?: number
-    dislikesCount?: number
     reaction: $Enums.Reaction
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type CommentReactionUpdateManyMutationInput = {
-    likesCount?: IntFieldUpdateOperationsInput | number
-    dislikesCount?: IntFieldUpdateOperationsInput | number
     reaction?: EnumReactionFieldUpdateOperationsInput | $Enums.Reaction
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9425,8 +9429,6 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     commentId?: IntFieldUpdateOperationsInput | number
     authorId?: IntFieldUpdateOperationsInput | number
-    likesCount?: IntFieldUpdateOperationsInput | number
-    dislikesCount?: IntFieldUpdateOperationsInput | number
     reaction?: EnumReactionFieldUpdateOperationsInput | $Enums.Reaction
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9648,12 +9650,16 @@ export namespace Prisma {
     authorId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    likesCount?: SortOrder
+    dislikesCount?: SortOrder
     topicId?: SortOrder
   }
 
   export type PostAvgOrderByAggregateInput = {
     id?: SortOrder
     authorId?: SortOrder
+    likesCount?: SortOrder
+    dislikesCount?: SortOrder
     topicId?: SortOrder
   }
 
@@ -9664,6 +9670,8 @@ export namespace Prisma {
     authorId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    likesCount?: SortOrder
+    dislikesCount?: SortOrder
     topicId?: SortOrder
   }
 
@@ -9674,12 +9682,16 @@ export namespace Prisma {
     authorId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    likesCount?: SortOrder
+    dislikesCount?: SortOrder
     topicId?: SortOrder
   }
 
   export type PostSumOrderByAggregateInput = {
     id?: SortOrder
     authorId?: SortOrder
+    likesCount?: SortOrder
+    dislikesCount?: SortOrder
     topicId?: SortOrder
   }
 
@@ -9719,6 +9731,8 @@ export namespace Prisma {
     content?: SortOrder
     postId?: SortOrder
     authorId?: SortOrder
+    likesCount?: SortOrder
+    dislikesCount?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -9727,6 +9741,8 @@ export namespace Prisma {
     id?: SortOrder
     postId?: SortOrder
     authorId?: SortOrder
+    likesCount?: SortOrder
+    dislikesCount?: SortOrder
   }
 
   export type CommentMaxOrderByAggregateInput = {
@@ -9734,6 +9750,8 @@ export namespace Prisma {
     content?: SortOrder
     postId?: SortOrder
     authorId?: SortOrder
+    likesCount?: SortOrder
+    dislikesCount?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -9743,6 +9761,8 @@ export namespace Prisma {
     content?: SortOrder
     postId?: SortOrder
     authorId?: SortOrder
+    likesCount?: SortOrder
+    dislikesCount?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -9751,6 +9771,8 @@ export namespace Prisma {
     id?: SortOrder
     postId?: SortOrder
     authorId?: SortOrder
+    likesCount?: SortOrder
+    dislikesCount?: SortOrder
   }
 
   export type EnumReactionFilter<$PrismaModel = never> = {
@@ -9760,12 +9782,15 @@ export namespace Prisma {
     not?: NestedEnumReactionFilter<$PrismaModel> | $Enums.Reaction
   }
 
+  export type PostReactionPostIdAuthorIdCompoundUniqueInput = {
+    postId: number
+    authorId: number
+  }
+
   export type PostReactionCountOrderByAggregateInput = {
     id?: SortOrder
     postId?: SortOrder
     authorId?: SortOrder
-    likesCount?: SortOrder
-    dislikesCount?: SortOrder
     reaction?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -9775,16 +9800,12 @@ export namespace Prisma {
     id?: SortOrder
     postId?: SortOrder
     authorId?: SortOrder
-    likesCount?: SortOrder
-    dislikesCount?: SortOrder
   }
 
   export type PostReactionMaxOrderByAggregateInput = {
     id?: SortOrder
     postId?: SortOrder
     authorId?: SortOrder
-    likesCount?: SortOrder
-    dislikesCount?: SortOrder
     reaction?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -9794,8 +9815,6 @@ export namespace Prisma {
     id?: SortOrder
     postId?: SortOrder
     authorId?: SortOrder
-    likesCount?: SortOrder
-    dislikesCount?: SortOrder
     reaction?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -9805,8 +9824,6 @@ export namespace Prisma {
     id?: SortOrder
     postId?: SortOrder
     authorId?: SortOrder
-    likesCount?: SortOrder
-    dislikesCount?: SortOrder
   }
 
   export type EnumReactionWithAggregatesFilter<$PrismaModel = never> = {
@@ -9824,12 +9841,15 @@ export namespace Prisma {
     isNot?: CommentWhereInput
   }
 
+  export type CommentReactionCommentIdAuthorIdCompoundUniqueInput = {
+    commentId: number
+    authorId: number
+  }
+
   export type CommentReactionCountOrderByAggregateInput = {
     id?: SortOrder
     commentId?: SortOrder
     authorId?: SortOrder
-    likesCount?: SortOrder
-    dislikesCount?: SortOrder
     reaction?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -9839,16 +9859,12 @@ export namespace Prisma {
     id?: SortOrder
     commentId?: SortOrder
     authorId?: SortOrder
-    likesCount?: SortOrder
-    dislikesCount?: SortOrder
   }
 
   export type CommentReactionMaxOrderByAggregateInput = {
     id?: SortOrder
     commentId?: SortOrder
     authorId?: SortOrder
-    likesCount?: SortOrder
-    dislikesCount?: SortOrder
     reaction?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -9858,8 +9874,6 @@ export namespace Prisma {
     id?: SortOrder
     commentId?: SortOrder
     authorId?: SortOrder
-    likesCount?: SortOrder
-    dislikesCount?: SortOrder
     reaction?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -9869,8 +9883,6 @@ export namespace Prisma {
     id?: SortOrder
     commentId?: SortOrder
     authorId?: SortOrder
-    likesCount?: SortOrder
-    dislikesCount?: SortOrder
   }
 
   export type PostCreateNestedManyWithoutAuthorInput = {
@@ -10483,6 +10495,8 @@ export namespace Prisma {
     content?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    likesCount?: number
+    dislikesCount?: number
     topic: TopicCreateNestedOneWithoutPostsInput
     comments?: CommentCreateNestedManyWithoutPostInput
     PostReaction?: PostReactionCreateNestedManyWithoutPostInput
@@ -10494,6 +10508,8 @@ export namespace Prisma {
     content?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    likesCount?: number
+    dislikesCount?: number
     topicId: number
     comments?: CommentUncheckedCreateNestedManyWithoutPostInput
     PostReaction?: PostReactionUncheckedCreateNestedManyWithoutPostInput
@@ -10511,6 +10527,8 @@ export namespace Prisma {
 
   export type CommentCreateWithoutAuthorInput = {
     content: string
+    likesCount?: number
+    dislikesCount?: number
     createdAt?: Date | string
     updatedAt?: Date | string
     post: PostCreateNestedOneWithoutCommentsInput
@@ -10521,6 +10539,8 @@ export namespace Prisma {
     id?: number
     content: string
     postId: number
+    likesCount?: number
+    dislikesCount?: number
     createdAt?: Date | string
     updatedAt?: Date | string
     CommentReaction?: CommentReactionUncheckedCreateNestedOneWithoutCommentInput
@@ -10537,8 +10557,6 @@ export namespace Prisma {
   }
 
   export type PostReactionCreateWithoutAuthorInput = {
-    likesCount?: number
-    dislikesCount?: number
     reaction: $Enums.Reaction
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -10548,8 +10566,6 @@ export namespace Prisma {
   export type PostReactionUncheckedCreateWithoutAuthorInput = {
     id?: number
     postId: number
-    likesCount?: number
-    dislikesCount?: number
     reaction: $Enums.Reaction
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -10566,8 +10582,6 @@ export namespace Prisma {
   }
 
   export type CommentReactionCreateWithoutAuthorInput = {
-    likesCount?: number
-    dislikesCount?: number
     reaction: $Enums.Reaction
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -10577,8 +10591,6 @@ export namespace Prisma {
   export type CommentReactionUncheckedCreateWithoutAuthorInput = {
     id?: number
     commentId: number
-    likesCount?: number
-    dislikesCount?: number
     reaction: $Enums.Reaction
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -10615,6 +10627,8 @@ export namespace Prisma {
     authorId?: IntFilter<"Post"> | number
     createdAt?: DateTimeFilter<"Post"> | Date | string
     updatedAt?: DateTimeFilter<"Post"> | Date | string
+    likesCount?: IntFilter<"Post"> | number
+    dislikesCount?: IntFilter<"Post"> | number
     topicId?: IntFilter<"Post"> | number
   }
 
@@ -10642,6 +10656,8 @@ export namespace Prisma {
     content?: StringFilter<"Comment"> | string
     postId?: IntFilter<"Comment"> | number
     authorId?: IntFilter<"Comment"> | number
+    likesCount?: IntFilter<"Comment"> | number
+    dislikesCount?: IntFilter<"Comment"> | number
     createdAt?: DateTimeFilter<"Comment"> | Date | string
     updatedAt?: DateTimeFilter<"Comment"> | Date | string
   }
@@ -10669,8 +10685,6 @@ export namespace Prisma {
     id?: IntFilter<"PostReaction"> | number
     postId?: IntFilter<"PostReaction"> | number
     authorId?: IntFilter<"PostReaction"> | number
-    likesCount?: IntFilter<"PostReaction"> | number
-    dislikesCount?: IntFilter<"PostReaction"> | number
     reaction?: EnumReactionFilter<"PostReaction"> | $Enums.Reaction
     createdAt?: DateTimeFilter<"PostReaction"> | Date | string
     updatedAt?: DateTimeFilter<"PostReaction"> | Date | string
@@ -10688,8 +10702,6 @@ export namespace Prisma {
   }
 
   export type CommentReactionUpdateWithoutAuthorInput = {
-    likesCount?: IntFieldUpdateOperationsInput | number
-    dislikesCount?: IntFieldUpdateOperationsInput | number
     reaction?: EnumReactionFieldUpdateOperationsInput | $Enums.Reaction
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10699,8 +10711,6 @@ export namespace Prisma {
   export type CommentReactionUncheckedUpdateWithoutAuthorInput = {
     id?: IntFieldUpdateOperationsInput | number
     commentId?: IntFieldUpdateOperationsInput | number
-    likesCount?: IntFieldUpdateOperationsInput | number
-    dislikesCount?: IntFieldUpdateOperationsInput | number
     reaction?: EnumReactionFieldUpdateOperationsInput | $Enums.Reaction
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10756,6 +10766,8 @@ export namespace Prisma {
 
   export type CommentCreateWithoutPostInput = {
     content: string
+    likesCount?: number
+    dislikesCount?: number
     createdAt?: Date | string
     updatedAt?: Date | string
     author: UserCreateNestedOneWithoutCommentInput
@@ -10766,6 +10778,8 @@ export namespace Prisma {
     id?: number
     content: string
     authorId: number
+    likesCount?: number
+    dislikesCount?: number
     createdAt?: Date | string
     updatedAt?: Date | string
     CommentReaction?: CommentReactionUncheckedCreateNestedOneWithoutCommentInput
@@ -10782,8 +10796,6 @@ export namespace Prisma {
   }
 
   export type PostReactionCreateWithoutPostInput = {
-    likesCount?: number
-    dislikesCount?: number
     reaction: $Enums.Reaction
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -10793,8 +10805,6 @@ export namespace Prisma {
   export type PostReactionUncheckedCreateWithoutPostInput = {
     id?: number
     authorId: number
-    likesCount?: number
-    dislikesCount?: number
     reaction: $Enums.Reaction
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -10907,6 +10917,8 @@ export namespace Prisma {
     content?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    likesCount?: number
+    dislikesCount?: number
     author: UserCreateNestedOneWithoutPostsInput
     comments?: CommentCreateNestedManyWithoutPostInput
     PostReaction?: PostReactionCreateNestedManyWithoutPostInput
@@ -10919,6 +10931,8 @@ export namespace Prisma {
     authorId: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    likesCount?: number
+    dislikesCount?: number
     comments?: CommentUncheckedCreateNestedManyWithoutPostInput
     PostReaction?: PostReactionUncheckedCreateNestedManyWithoutPostInput
   }
@@ -10954,6 +10968,8 @@ export namespace Prisma {
     content?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    likesCount?: number
+    dislikesCount?: number
     author: UserCreateNestedOneWithoutPostsInput
     topic: TopicCreateNestedOneWithoutPostsInput
     PostReaction?: PostReactionCreateNestedManyWithoutPostInput
@@ -10966,6 +10982,8 @@ export namespace Prisma {
     authorId: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    likesCount?: number
+    dislikesCount?: number
     topicId: number
     PostReaction?: PostReactionUncheckedCreateNestedManyWithoutPostInput
   }
@@ -11008,8 +11026,6 @@ export namespace Prisma {
   }
 
   export type CommentReactionCreateWithoutCommentInput = {
-    likesCount?: number
-    dislikesCount?: number
     reaction: $Enums.Reaction
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -11019,8 +11035,6 @@ export namespace Prisma {
   export type CommentReactionUncheckedCreateWithoutCommentInput = {
     id?: number
     authorId: number
-    likesCount?: number
-    dislikesCount?: number
     reaction: $Enums.Reaction
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -11047,6 +11061,8 @@ export namespace Prisma {
     content?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    likesCount?: IntFieldUpdateOperationsInput | number
+    dislikesCount?: IntFieldUpdateOperationsInput | number
     author?: UserUpdateOneRequiredWithoutPostsNestedInput
     topic?: TopicUpdateOneRequiredWithoutPostsNestedInput
     PostReaction?: PostReactionUpdateManyWithoutPostNestedInput
@@ -11059,6 +11075,8 @@ export namespace Prisma {
     authorId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    likesCount?: IntFieldUpdateOperationsInput | number
+    dislikesCount?: IntFieldUpdateOperationsInput | number
     topicId?: IntFieldUpdateOperationsInput | number
     PostReaction?: PostReactionUncheckedUpdateManyWithoutPostNestedInput
   }
@@ -11113,8 +11131,6 @@ export namespace Prisma {
   }
 
   export type CommentReactionUpdateWithoutCommentInput = {
-    likesCount?: IntFieldUpdateOperationsInput | number
-    dislikesCount?: IntFieldUpdateOperationsInput | number
     reaction?: EnumReactionFieldUpdateOperationsInput | $Enums.Reaction
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11124,8 +11140,6 @@ export namespace Prisma {
   export type CommentReactionUncheckedUpdateWithoutCommentInput = {
     id?: IntFieldUpdateOperationsInput | number
     authorId?: IntFieldUpdateOperationsInput | number
-    likesCount?: IntFieldUpdateOperationsInput | number
-    dislikesCount?: IntFieldUpdateOperationsInput | number
     reaction?: EnumReactionFieldUpdateOperationsInput | $Enums.Reaction
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11136,6 +11150,8 @@ export namespace Prisma {
     content?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    likesCount?: number
+    dislikesCount?: number
     author: UserCreateNestedOneWithoutPostsInput
     topic: TopicCreateNestedOneWithoutPostsInput
     comments?: CommentCreateNestedManyWithoutPostInput
@@ -11148,6 +11164,8 @@ export namespace Prisma {
     authorId: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    likesCount?: number
+    dislikesCount?: number
     topicId: number
     comments?: CommentUncheckedCreateNestedManyWithoutPostInput
   }
@@ -11205,6 +11223,8 @@ export namespace Prisma {
     content?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    likesCount?: IntFieldUpdateOperationsInput | number
+    dislikesCount?: IntFieldUpdateOperationsInput | number
     author?: UserUpdateOneRequiredWithoutPostsNestedInput
     topic?: TopicUpdateOneRequiredWithoutPostsNestedInput
     comments?: CommentUpdateManyWithoutPostNestedInput
@@ -11217,6 +11237,8 @@ export namespace Prisma {
     authorId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    likesCount?: IntFieldUpdateOperationsInput | number
+    dislikesCount?: IntFieldUpdateOperationsInput | number
     topicId?: IntFieldUpdateOperationsInput | number
     comments?: CommentUncheckedUpdateManyWithoutPostNestedInput
   }
@@ -11261,6 +11283,8 @@ export namespace Prisma {
 
   export type CommentCreateWithoutCommentReactionInput = {
     content: string
+    likesCount?: number
+    dislikesCount?: number
     createdAt?: Date | string
     updatedAt?: Date | string
     post: PostCreateNestedOneWithoutCommentsInput
@@ -11272,6 +11296,8 @@ export namespace Prisma {
     content: string
     postId: number
     authorId: number
+    likesCount?: number
+    dislikesCount?: number
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -11326,6 +11352,8 @@ export namespace Prisma {
 
   export type CommentUpdateWithoutCommentReactionInput = {
     content?: StringFieldUpdateOperationsInput | string
+    likesCount?: IntFieldUpdateOperationsInput | number
+    dislikesCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     post?: PostUpdateOneRequiredWithoutCommentsNestedInput
@@ -11337,6 +11365,8 @@ export namespace Prisma {
     content?: StringFieldUpdateOperationsInput | string
     postId?: IntFieldUpdateOperationsInput | number
     authorId?: IntFieldUpdateOperationsInput | number
+    likesCount?: IntFieldUpdateOperationsInput | number
+    dislikesCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -11385,6 +11415,8 @@ export namespace Prisma {
     content?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    likesCount?: number
+    dislikesCount?: number
     topicId: number
   }
 
@@ -11392,6 +11424,8 @@ export namespace Prisma {
     id?: number
     content: string
     postId: number
+    likesCount?: number
+    dislikesCount?: number
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -11399,8 +11433,6 @@ export namespace Prisma {
   export type PostReactionCreateManyAuthorInput = {
     id?: number
     postId: number
-    likesCount?: number
-    dislikesCount?: number
     reaction: $Enums.Reaction
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -11411,6 +11443,8 @@ export namespace Prisma {
     content?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    likesCount?: IntFieldUpdateOperationsInput | number
+    dislikesCount?: IntFieldUpdateOperationsInput | number
     topic?: TopicUpdateOneRequiredWithoutPostsNestedInput
     comments?: CommentUpdateManyWithoutPostNestedInput
     PostReaction?: PostReactionUpdateManyWithoutPostNestedInput
@@ -11422,6 +11456,8 @@ export namespace Prisma {
     content?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    likesCount?: IntFieldUpdateOperationsInput | number
+    dislikesCount?: IntFieldUpdateOperationsInput | number
     topicId?: IntFieldUpdateOperationsInput | number
     comments?: CommentUncheckedUpdateManyWithoutPostNestedInput
     PostReaction?: PostReactionUncheckedUpdateManyWithoutPostNestedInput
@@ -11433,11 +11469,15 @@ export namespace Prisma {
     content?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    likesCount?: IntFieldUpdateOperationsInput | number
+    dislikesCount?: IntFieldUpdateOperationsInput | number
     topicId?: IntFieldUpdateOperationsInput | number
   }
 
   export type CommentUpdateWithoutAuthorInput = {
     content?: StringFieldUpdateOperationsInput | string
+    likesCount?: IntFieldUpdateOperationsInput | number
+    dislikesCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     post?: PostUpdateOneRequiredWithoutCommentsNestedInput
@@ -11448,6 +11488,8 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     content?: StringFieldUpdateOperationsInput | string
     postId?: IntFieldUpdateOperationsInput | number
+    likesCount?: IntFieldUpdateOperationsInput | number
+    dislikesCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     CommentReaction?: CommentReactionUncheckedUpdateOneWithoutCommentNestedInput
@@ -11457,13 +11499,13 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     content?: StringFieldUpdateOperationsInput | string
     postId?: IntFieldUpdateOperationsInput | number
+    likesCount?: IntFieldUpdateOperationsInput | number
+    dislikesCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PostReactionUpdateWithoutAuthorInput = {
-    likesCount?: IntFieldUpdateOperationsInput | number
-    dislikesCount?: IntFieldUpdateOperationsInput | number
     reaction?: EnumReactionFieldUpdateOperationsInput | $Enums.Reaction
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11473,8 +11515,6 @@ export namespace Prisma {
   export type PostReactionUncheckedUpdateWithoutAuthorInput = {
     id?: IntFieldUpdateOperationsInput | number
     postId?: IntFieldUpdateOperationsInput | number
-    likesCount?: IntFieldUpdateOperationsInput | number
-    dislikesCount?: IntFieldUpdateOperationsInput | number
     reaction?: EnumReactionFieldUpdateOperationsInput | $Enums.Reaction
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11483,8 +11523,6 @@ export namespace Prisma {
   export type PostReactionUncheckedUpdateManyWithoutAuthorInput = {
     id?: IntFieldUpdateOperationsInput | number
     postId?: IntFieldUpdateOperationsInput | number
-    likesCount?: IntFieldUpdateOperationsInput | number
-    dislikesCount?: IntFieldUpdateOperationsInput | number
     reaction?: EnumReactionFieldUpdateOperationsInput | $Enums.Reaction
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11494,6 +11532,8 @@ export namespace Prisma {
     id?: number
     content: string
     authorId: number
+    likesCount?: number
+    dislikesCount?: number
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -11501,8 +11541,6 @@ export namespace Prisma {
   export type PostReactionCreateManyPostInput = {
     id?: number
     authorId: number
-    likesCount?: number
-    dislikesCount?: number
     reaction: $Enums.Reaction
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -11510,6 +11548,8 @@ export namespace Prisma {
 
   export type CommentUpdateWithoutPostInput = {
     content?: StringFieldUpdateOperationsInput | string
+    likesCount?: IntFieldUpdateOperationsInput | number
+    dislikesCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     author?: UserUpdateOneRequiredWithoutCommentNestedInput
@@ -11520,6 +11560,8 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     content?: StringFieldUpdateOperationsInput | string
     authorId?: IntFieldUpdateOperationsInput | number
+    likesCount?: IntFieldUpdateOperationsInput | number
+    dislikesCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     CommentReaction?: CommentReactionUncheckedUpdateOneWithoutCommentNestedInput
@@ -11529,13 +11571,13 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     content?: StringFieldUpdateOperationsInput | string
     authorId?: IntFieldUpdateOperationsInput | number
+    likesCount?: IntFieldUpdateOperationsInput | number
+    dislikesCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PostReactionUpdateWithoutPostInput = {
-    likesCount?: IntFieldUpdateOperationsInput | number
-    dislikesCount?: IntFieldUpdateOperationsInput | number
     reaction?: EnumReactionFieldUpdateOperationsInput | $Enums.Reaction
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11545,8 +11587,6 @@ export namespace Prisma {
   export type PostReactionUncheckedUpdateWithoutPostInput = {
     id?: IntFieldUpdateOperationsInput | number
     authorId?: IntFieldUpdateOperationsInput | number
-    likesCount?: IntFieldUpdateOperationsInput | number
-    dislikesCount?: IntFieldUpdateOperationsInput | number
     reaction?: EnumReactionFieldUpdateOperationsInput | $Enums.Reaction
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11555,8 +11595,6 @@ export namespace Prisma {
   export type PostReactionUncheckedUpdateManyWithoutPostInput = {
     id?: IntFieldUpdateOperationsInput | number
     authorId?: IntFieldUpdateOperationsInput | number
-    likesCount?: IntFieldUpdateOperationsInput | number
-    dislikesCount?: IntFieldUpdateOperationsInput | number
     reaction?: EnumReactionFieldUpdateOperationsInput | $Enums.Reaction
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11569,6 +11607,8 @@ export namespace Prisma {
     authorId: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    likesCount?: number
+    dislikesCount?: number
   }
 
   export type PostUpdateWithoutTopicInput = {
@@ -11576,6 +11616,8 @@ export namespace Prisma {
     content?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    likesCount?: IntFieldUpdateOperationsInput | number
+    dislikesCount?: IntFieldUpdateOperationsInput | number
     author?: UserUpdateOneRequiredWithoutPostsNestedInput
     comments?: CommentUpdateManyWithoutPostNestedInput
     PostReaction?: PostReactionUpdateManyWithoutPostNestedInput
@@ -11588,6 +11630,8 @@ export namespace Prisma {
     authorId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    likesCount?: IntFieldUpdateOperationsInput | number
+    dislikesCount?: IntFieldUpdateOperationsInput | number
     comments?: CommentUncheckedUpdateManyWithoutPostNestedInput
     PostReaction?: PostReactionUncheckedUpdateManyWithoutPostNestedInput
   }
@@ -11599,6 +11643,8 @@ export namespace Prisma {
     authorId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    likesCount?: IntFieldUpdateOperationsInput | number
+    dislikesCount?: IntFieldUpdateOperationsInput | number
   }
 
 

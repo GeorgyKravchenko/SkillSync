@@ -110,5 +110,43 @@ const postsController = {
       res.status(500).json({ message: 'Ошибка сервера при удалении поста' });
     }
   },
+  addLikeForPost: async (req: Request, res: Response) => {
+    try {
+      const postId = parseInt(req.params.id);
+      const userId = req.user?.id;
+      if (isNaN(postId)) {
+        res.status(400).json({ message: 'Неверный ID поста' });
+        return;
+      }
+      if (!userId) {
+        res.status(401).json({ message: 'Требуется аутентификация' });
+        return;
+      }
+      const updatedPost = await postsService.addLikeForPost(postId, userId);
+      res.status(200).json(updatedPost);
+    } catch (error) {
+      console.error('Ошибка при добавлении лайка к посту:', error);
+      res.status(500).json({ message: 'Ошибка сервера при добавлении лайка к посту' });
+    }
+  },
+  addDislikeForPost: async (req: Request, res: Response) => {
+    try {
+      const postId = parseInt(req.params.id);
+      const userId = req.user?.id;
+      if (isNaN(postId)) {
+        res.status(400).json({ message: 'Неверный ID поста' });
+        return;
+      }
+      if (!userId) {
+        res.status(401).json({ message: 'Требуется аутентификация' });
+        return;
+      }
+      const updatedPost = await postsService.addDisLikeForPost(postId, userId);
+      res.status(200).json(updatedPost);
+    } catch (error) {
+      console.error('Ошибка при добавлении дизлайка к посту:', error);
+      res.status(500).json({ message: 'Ошибка сервера при добавлении дизлайка к посту' });
+    }
+  },
 };
 export default postsController;
