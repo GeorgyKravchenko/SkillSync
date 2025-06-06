@@ -11,7 +11,7 @@ const usePostReaction = (reactionType: Reaction, postId: number) => {
     mutationFn: (id: number) => {
       return reactionType === Reaction.LIKE
         ? PostsService.addLikeForPost(id)
-        : PostsService.addLikeForPost(id);
+        : PostsService.addDislikeForPost(id);
     },
     onSuccess: () => {
       refetch();
