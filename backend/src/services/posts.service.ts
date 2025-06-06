@@ -39,6 +39,12 @@ const postsService = {
         content: true,
         dislikesCount: true,
         likesCount: true,
+        PostReactions: {
+          select: {
+            authorId: true,
+            reaction: true,
+          },
+        },
         createdAt: true,
         updatedAt: true,
         author: {
@@ -55,6 +61,12 @@ const postsService = {
             updatedAt: true,
             dislikesCount: true,
             likesCount: true,
+            CommentReactions: {
+              select: {
+                authorId: true,
+                reaction: true,
+              },
+            },
             author: {
               select: {
                 id: true,

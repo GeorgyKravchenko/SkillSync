@@ -44,11 +44,11 @@ model Post {
   likesCount    Int      @default(0) @map("likes_count")
   dislikesCount Int      @default(0) @map("dislikes_count")
 
-  author       User           @relation(fields: [authorId], references: [id])
-  topic        Topic          @relation(fields: [topicId], references: [id])
-  topicId      Int
-  comments     Comment[]
-  PostReaction PostReaction[]
+  author        User           @relation(fields: [authorId], references: [id])
+  topic         Topic          @relation(fields: [topicId], references: [id])
+  topicId       Int
+  comments      Comment[]
+  PostReactions PostReaction[]
 }
 
 model Topic {
@@ -66,11 +66,11 @@ model Comment {
   likesCount    Int    @default(0) @map("likes_count")
   dislikesCount Int    @default(0) @map("dislikes_count")
 
-  post            Post              @relation(fields: [postId], references: [id])
-  author          User              @relation(fields: [authorId], references: [id])
-  createdAt       DateTime          @default(now()) @map("created_at")
-  updatedAt       DateTime          @updatedAt @map("updated_at")
-  CommentReaction CommentReaction[]
+  post             Post              @relation(fields: [postId], references: [id])
+  author           User              @relation(fields: [authorId], references: [id])
+  createdAt        DateTime          @default(now()) @map("created_at")
+  updatedAt        DateTime          @updatedAt @map("updated_at")
+  CommentReactions CommentReaction[]
 }
 
 model PostReaction {
