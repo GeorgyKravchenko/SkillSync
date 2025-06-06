@@ -13,9 +13,8 @@ const useCommentReaction = (reactionType: Reaction, postId: number) => {
         ? CommentService.addLikeForComment(id)
         : CommentService.addDislikeForComment(id);
     },
-    onSuccess: (res) => {
+    onSuccess: () => {
       refetch();
-      console.log(`Comment ${reactionType.toLowerCase()}d successfully`, res);
     },
   });
 };

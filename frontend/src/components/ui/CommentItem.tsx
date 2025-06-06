@@ -81,7 +81,15 @@ export default function CommentItem({ comment, postId }: Props) {
           ) : (
             <>
               <p className="text-gray-700 dark:text-gray-300">{comment.content}</p>
-              <ReactionButtonGroupForComment commentId={comment.id} postId={postId} />
+              <ReactionButtonGroupForComment
+                commentId={comment.id}
+                defaultreaction={
+                  comment.CommentReactions.find((r) => r.authorId === user?.id)?.reaction || null
+                }
+                likeCount={comment.likesCount}
+                dislikeCount={comment.dislikesCount}
+                postId={postId}
+              />
             </>
           )}
         </div>

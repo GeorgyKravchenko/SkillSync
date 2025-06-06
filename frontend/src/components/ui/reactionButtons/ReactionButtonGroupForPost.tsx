@@ -1,28 +1,27 @@
-import { useDislikeComment, useLikeComment } from '@/hooks/comment/useCommentReaction';
+import { useDislikePost, useLikePost } from '@/hooks/post/usePostReaction';
 import { Reaction } from '@/types/reaction.enum';
 import { useState } from 'react';
 
-const ReactionButtonGroupForComment = ({
-  commentId,
+const ReactionButtonGroupForPost = ({
   postId,
   likeCount,
   dislikeCount,
   defaultreaction,
 }: {
-  commentId: number;
   postId: number;
   likeCount: number;
   dislikeCount: number;
   defaultreaction: Reaction | null;
 }) => {
   const [reaction, setReaction] = useState<Reaction | null>(defaultreaction);
-  const { mutate: like } = useLikeComment(postId);
-  const { mutate: dislike } = useDislikeComment(postId);
+  const { mutate: like } = useLikePost(postId);
+  const { mutate: dislike } = useDislikePost(postId);
+
   const toggleReaction = (newReaction: Reaction) => {
     if (newReaction === Reaction.LIKE) {
-      like(commentId);
+      like(postId);
     } else {
-      dislike(commentId);
+      dislike(postId);
     }
     setReaction((prev) => (prev === newReaction ? null : newReaction));
   };
@@ -36,8 +35,8 @@ const ReactionButtonGroupForComment = ({
         className="group flex items-center p-1 transition-colors"
       >
         <svg
-          width="24"
-          height="24"
+          width="32"
+          height="32"
           viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -55,7 +54,7 @@ const ReactionButtonGroupForComment = ({
             strokeLinejoin="round"
           />
         </svg>
-        <span className="ml-1">{likeCount}</span>
+        <span className="ml-2 text-xl">{likeCount}</span>
       </button>
 
       <button
@@ -65,8 +64,8 @@ const ReactionButtonGroupForComment = ({
         className="group flex items-center p-1 transition-colors"
       >
         <svg
-          width="24"
-          height="24"
+          width="32"
+          height="32"
           viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -84,10 +83,10 @@ const ReactionButtonGroupForComment = ({
             strokeLinejoin="round"
           />
         </svg>
-        <span className="ml-1">{dislikeCount}</span>
+        <span className="ml-2 text-xl">{dislikeCount}</span>
       </button>
     </div>
   );
 };
 
-export default ReactionButtonGroupForComment;
+export default ReactionButtonGroupForPost;

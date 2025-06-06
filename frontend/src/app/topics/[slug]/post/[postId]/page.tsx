@@ -10,8 +10,11 @@ import { ICommentCreateDto } from '@/types/comment.types';
 import CommentItem from '@/components/ui/CommentItem';
 import MarkdownContent from '@/components/ui/MarkDownContent';
 import CommentForm from '@/components/ui/CommentForm';
+import useAuthStore from '@/lib/store/user';
+import ReactionButtonGroupForPost from '@/components/ui/reactionButtons/ReactionButtonGroupForPost';
 
 export default function PostPage() {
+  const user = useAuthStore((state) => state.user);
   const { postId } = useParams() as { postId: string };
   const { data: post, isLoading } = usePost(+postId);
   const { mutate: createComment } = useCreateComment(+postId);
@@ -33,7 +36,16 @@ export default function PostPage() {
         </header>
 
         <MarkdownContent content={post.content} />
-
+        <div className="mt-2 ">
+          <ReactionButtonGroupForPost
+            defaultreaction={
+              post.PostReactions.find((r) => r.authorId === user?.id)?.reaction || null
+            }
+            likeCount={post.likesCount}
+            dislikeCount={post.dislikesCount}
+            postId={+postId}
+          />
+        </div>
         <footer className="mt-10">
           <Link
             href="/topics"
