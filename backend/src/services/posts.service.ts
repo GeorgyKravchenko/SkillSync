@@ -51,6 +51,7 @@ const postsService = {
           select: {
             id: true,
             name: true,
+            avatar: true,
           },
         },
         comments: {
@@ -71,6 +72,7 @@ const postsService = {
               select: {
                 id: true,
                 name: true,
+                avatar: true,
               },
             },
           },

@@ -4,6 +4,7 @@ import useAuthStore from '@/lib/store/user';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 export default function Header() {
   const router = useRouter();
@@ -38,15 +39,23 @@ export default function Header() {
           >
             {darkMode ? '🌙' : '☀️'}
           </button>
-          <button
-            className="w-10 h-10 flex items-center justify-center rounded-full border border-cyan-400 dark:border-cyan-600 bg-white/20 dark:bg-white/10 hover:scale-110 transition text-cyan-700 dark:text-cyan-300"
-            title="Профіль"
-            onClick={() => {
-              router.push('/profile');
-            }}
-          >
-            {user?.avatar ? user.avatar : user?.name?.charAt(0).toUpperCase() || '👤'}
-          </button>
+          {user?.avatar ? (
+            <Image
+              src={user.avatar}
+              alt="Avatar"
+              width={40}
+              height={40}
+              className="w-10 h-10 rounded-full object-cover border border-cyan-400 dark:border-cyan-600 hover:scale-110 transition cursor-pointer"
+              onClick={() => router.push('/profile')}
+            />
+          ) : (
+            <div
+              className="w-10 h-10 rounded-full bg-cyan-200 dark:bg-cyan-800 flex items-center justify-center text-2xl text-cyan-700 dark:text-cyan-300 hover:scale-110 transition cursor-pointer"
+              onClick={() => router.push('/profile')}
+            >
+              {user?.name?.charAt(0).toUpperCase() || '👤'}
+            </div>
+          )}
         </div>
       </div>
     </header>

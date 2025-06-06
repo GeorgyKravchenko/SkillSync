@@ -1,9 +1,12 @@
 'use client';
 
 import BaseButton from '@/components/ui/BaseButton';
+import DowloadAvatar from '@/components/ui/Modal/DowloadAvatar';
 import useGetProfile from '@/hooks/profile/useGetProfile';
 import useUpdateProfile from '@/hooks/profile/useUpdateProfile';
+import useUploadAvatar from '@/hooks/profile/useUploadAvatar';
 import useAuthStore from '@/lib/store/user';
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -18,9 +21,12 @@ export default function ProfilePage() {
     formState: { errors },
   } = useForm<ProfileFormData>();
   const { data, refetch } = useGetProfile();
-  const { mutate, isSuccess: isSuccessUpdate } = useUpdateProfile();
+  const { mutate: updateProfile, isSuccess: isSuccessUpdate } = useUpdateProfile();
   const [isEditing, setIsEditing] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const user = useAuthStore((state) => state.user);
+
+  const { mutate: uploadAvatar } = useUploadAvatar();
   useEffect(() => {
     if (isSuccessUpdate) {
       setIsEditing(false);
@@ -28,7 +34,7 @@ export default function ProfilePage() {
     }
   }, [isSuccessUpdate, refetch]);
   const handleUpdateProfile = (data: { name: string; description: string }) => {
-    mutate(data);
+    updateProfile(data);
   };
 
   return (
@@ -42,8 +48,42 @@ export default function ProfilePage() {
         </div>
 
         <div className="flex items-center gap-6">
-          <div className="w-20 h-20 rounded-full bg-cyan-200 dark:bg-cyan-800 flex items-center justify-center text-3xl">
-            {user?.avatar ? user.avatar : user?.name?.charAt(0).toUpperCase() || '👤'}
+          <div className="relative flex items-center">
+            {user?.avatar ? (
+              <Image
+                src={user.avatar}
+                alt="Avatar"
+                width={80}
+                height={80}
+                className="w-20 h-20 rounded-full object-cover border-2 border-cyan-400 dark:border-cyan-600"
+              />
+            ) : (
+              <div className="w-20 h-20 rounded-full bg-cyan-200 dark:bg-cyan-800 flex items-center justify-center text-3xl">
+                {user?.name?.charAt(0).toUpperCase() || '👤'}
+              </div>
+            )}
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="absolute -bottom-1 -right-1 rounded-full bg-cyan-400 dark:bg-cyan-600 w-7 h-7 flex items-center justify-center text-white text-sm cursor-pointer"
+            >
+              <svg
+                xmlns="[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)"
+                className="h-5 w-5"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </button>
+            <DowloadAvatar
+              isOpen={isModalOpen}
+              onClose={() => setIsModalOpen(false)}
+              onConfirm={(file: File) => uploadAvatar(file)}
+            />
           </div>
 
           {isEditing ? (

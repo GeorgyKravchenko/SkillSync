@@ -8,7 +8,7 @@ import OwnerKebabMenu from './kebabMenu/OwnerKebabMenu';
 import { memo, useState } from 'react';
 import useUpdateComment from '@/hooks/comment/useUpdateComment';
 import ReactionButtonGroupForComment from './reactionButtons/ReactionButtonGroupForComment';
-
+import Image from 'next/image';
 type Props = {
   comment: IComment;
   postId: number;
@@ -37,9 +37,19 @@ export const CommentItem = memo(function CommentItem({ comment, postId }: Props)
   return (
     <li className="relative p-4 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-shadow">
       <div className="flex gap-3">
-        <div className="flex-shrink-0 w-10 h-10 rounded-full bg-cyan-100 dark:bg-cyan-900 flex items-center justify-center text-cyan-600 dark:text-cyan-300 font-medium">
-          {comment.author.name.charAt(0)}
-        </div>
+        {comment.author.avatar ? (
+          <Image
+            width={40}
+            height={40}
+            src={comment.author.avatar}
+            alt="Avatar"
+            className="w-10 h-10 rounded-full object-cover"
+          />
+        ) : (
+          <div className="flex-shrink-0 w-10 h-10 rounded-full bg-cyan-100 dark:bg-cyan-900 flex items-center justify-center text-cyan-600 dark:text-cyan-300 font-medium">
+            {comment.author.name.charAt(0)}
+          </div>
+        )}
 
         <div className="flex-1 min-w-0">
           <div className="flex justify-between items-baseline mb-1">

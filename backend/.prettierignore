@@ -7,3 +7,4 @@ coverage
 .gitignore
 prisma
 generated
+uploads

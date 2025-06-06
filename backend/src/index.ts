@@ -9,6 +9,7 @@ import cookieParser from 'cookie-parser';
 import postsRouter from './routes/posts.route';
 import topicRouter from './routes/topic.route';
 import commentRouter from './routes/comments.route';
+
 dotenv.config();
 
 const app = express();
