@@ -7,11 +7,11 @@ import { useParams } from 'next/navigation';
 import usePost from '@/hooks/post/usePost';
 import useCreateComment from '@/hooks/comment/useCreateComment';
 import { ICommentCreateDto } from '@/types/comment.types';
-import CommentItem from '@/components/ui/CommentItem';
 import MarkdownContent from '@/components/ui/MarkDownContent';
 import CommentForm from '@/components/ui/CommentForm';
 import useAuthStore from '@/lib/store/user';
 import ReactionButtonGroupForPost from '@/components/ui/reactionButtons/ReactionButtonGroupForPost';
+import { CommentItem } from '@/components/ui/CommentItem';
 
 export default function PostPage() {
   const user = useAuthStore((state) => state.user);

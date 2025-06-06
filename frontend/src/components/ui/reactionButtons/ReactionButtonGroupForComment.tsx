@@ -30,6 +30,7 @@ const ReactionButtonGroupForComment = ({
   return (
     <div className="flex items-center gap-4">
       <button
+        type="button"
         onClick={() => toggleReaction(Reaction.LIKE)}
         aria-label="Поставить или убрать лайк"
         aria-pressed={reaction === Reaction.LIKE}
@@ -59,6 +60,7 @@ const ReactionButtonGroupForComment = ({
       </button>
 
       <button
+        type="button"
         onClick={() => toggleReaction(Reaction.DISLIKE)}
         aria-label="Поставить или убрать дизлайк"
         aria-pressed={reaction === Reaction.DISLIKE}

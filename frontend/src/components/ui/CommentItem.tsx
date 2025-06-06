@@ -5,7 +5,7 @@ import { uk } from 'date-fns/locale';
 import { IComment, ICommentCreateDto } from '@/types/comment.types';
 import useAuthStore from '@/lib/store/user';
 import OwnerKebabMenu from './kebabMenu/OwnerKebabMenu';
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import useUpdateComment from '@/hooks/comment/useUpdateComment';
 import ReactionButtonGroupForComment from './reactionButtons/ReactionButtonGroupForComment';
 
@@ -14,7 +14,7 @@ type Props = {
   postId: number;
 };
 
-export default function CommentItem({ comment, postId }: Props) {
+export const CommentItem = memo(function CommentItem({ comment, postId }: Props) {
   const user = useAuthStore((state) => state.user);
   const isAuthor = user?.id === comment.author.id;
   const { register, handleSubmit, reset } = useForm<ICommentCreateDto>();
@@ -100,4 +100,4 @@ export default function CommentItem({ comment, postId }: Props) {
       </div>
     </li>
   );
-}
+});

@@ -89,6 +89,17 @@ const commentService = {
         });
       }
     }
+    return await prisma.comment.findUnique({
+      where: { id: commentId },
+      select: {
+        likesCount: true,
+        dislikesCount: true,
+        CommentReactions: {
+          where: { authorId: userId },
+          select: { reaction: true },
+        },
+      },
+    });
   },
 
   async addDisLikeForComment(commentId: number, userId: number) {
@@ -155,6 +166,17 @@ const commentService = {
         });
       }
     }
+    return await prisma.comment.findUnique({
+      where: { id: commentId },
+      select: {
+        likesCount: true,
+        dislikesCount: true,
+        CommentReactions: {
+          where: { authorId: userId },
+          select: { reaction: true },
+        },
+      },
+    });
   },
 };
 
