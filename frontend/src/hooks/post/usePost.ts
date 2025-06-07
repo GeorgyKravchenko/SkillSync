@@ -6,6 +6,7 @@ const usePost = (id: number) => {
     queryKey: ['post', id],
     queryFn: async () => {
       const response = await PostsService.getPostById(id);
+      console.log('usePost response:', response.data);
       return response.data;
     },
   });

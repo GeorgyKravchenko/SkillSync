@@ -17,21 +17,36 @@ const useCommentReaction = (reactionType: Reaction, postId: number) => {
 
     onSuccess: ({ data }, commentId) => {
       queryClient.setQueryData(['post', postId], (old: IPost) => {
+        console.log('data', data);
         if (!old) return old;
 
-        return {
+        const data2 = {
           ...old,
-          comments: old.comments.map((comment: IComment) =>
-            comment.id === commentId
-              ? {
-                  ...comment,
-                  CommentReactions: [data.CommentReactions],
-                  likesCount: data.likesCount,
-                  dislikesCount: data.dislikesCount,
-                }
-              : comment,
-          ),
+          comments: old.comments
+            .filter((comment) => !comment.isReply)
+            .map((comment: IComment) =>
+              comment.id === commentId
+                ? {
+                    ...comment,
+                    CommentReactions: [data.CommentReactions],
+                    likesCount: data.likesCount,
+                    dislikesCount: data.dislikesCount,
+                    replies: comment.replies.map((reply) =>
+                      reply.id === commentId
+                        ? {
+                            ...reply,
+                            CommentReactions: [data.replies.CommentReactions],
+                            likesCount: data.replies.likesCount,
+                            dislikesCount: data.replies.dislikesCount,
+                          }
+                        : reply,
+                    ),
+                  }
+                : comment,
+            ),
         };
+        console.log('data2', data2);
+        return data2;
       });
     },
   });

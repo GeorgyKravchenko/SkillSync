@@ -2,6 +2,76 @@ import { Post, Reaction } from '../../generated/prisma';
 import prisma from '../utils/prismaClient';
 import { getRedisValue, redis, setRedisValue } from '../utils/redisClient';
 
+const selectPostFields = {
+  id: true,
+  title: true,
+  content: true,
+  dislikesCount: true,
+  likesCount: true,
+  PostReactions: {
+    select: {
+      authorId: true,
+      reaction: true,
+    },
+  },
+  createdAt: true,
+  updatedAt: true,
+  author: {
+    select: {
+      id: true,
+      name: true,
+      avatar: true,
+    },
+  },
+  comments: {
+    select: {
+      id: true,
+      content: true,
+      isReply: true,
+      createdAt: true,
+      updatedAt: true,
+      dislikesCount: true,
+      likesCount: true,
+      CommentReactions: {
+        select: {
+          authorId: true,
+          reaction: true,
+        },
+      },
+      replies: {
+        select: {
+          id: true,
+          content: true,
+          createdAt: true,
+          updatedAt: true,
+          dislikesCount: true,
+          likesCount: true,
+          CommentReactions: {
+            select: {
+              authorId: true,
+              reaction: true,
+            },
+          },
+          author: {
+            select: {
+              id: true,
+              name: true,
+              avatar: true,
+            },
+          },
+        },
+      },
+      author: {
+        select: {
+          id: true,
+          name: true,
+          avatar: true,
+        },
+      },
+    },
+  },
+};
+
 function getPostsCacheKey(skip: number, limit: number) {
   return `posts:${skip}:${limit}`;
 }
@@ -62,51 +132,7 @@ const postsService = {
 
     const post = await prisma.post.findUnique({
       where: { id },
-      select: {
-        id: true,
-        title: true,
-        content: true,
-        dislikesCount: true,
-        likesCount: true,
-        PostReactions: {
-          select: {
-            authorId: true,
-            reaction: true,
-          },
-        },
-        createdAt: true,
-        updatedAt: true,
-        author: {
-          select: {
-            id: true,
-            name: true,
-            avatar: true,
-          },
-        },
-        comments: {
-          select: {
-            id: true,
-            content: true,
-            createdAt: true,
-            updatedAt: true,
-            dislikesCount: true,
-            likesCount: true,
-            CommentReactions: {
-              select: {
-                authorId: true,
-                reaction: true,
-              },
-            },
-            author: {
-              select: {
-                id: true,
-                name: true,
-                avatar: true,
-              },
-            },
-          },
-        },
-      },
+      select: { ...selectPostFields },
     });
 
     if (post) {
@@ -164,49 +190,7 @@ const postsService = {
     const post = await prisma.post.findUnique({
       where: { id: postId },
       select: {
-        id: true,
-        title: true,
-        content: true,
-        dislikesCount: true,
-        likesCount: true,
-        PostReactions: {
-          select: {
-            authorId: true,
-            reaction: true,
-          },
-        },
-        createdAt: true,
-        updatedAt: true,
-        author: {
-          select: {
-            id: true,
-            name: true,
-            avatar: true,
-          },
-        },
-        comments: {
-          select: {
-            id: true,
-            content: true,
-            createdAt: true,
-            updatedAt: true,
-            dislikesCount: true,
-            likesCount: true,
-            CommentReactions: {
-              select: {
-                authorId: true,
-                reaction: true,
-              },
-            },
-            author: {
-              select: {
-                id: true,
-                name: true,
-                avatar: true,
-              },
-            },
-          },
-        },
+        ...selectPostFields,
       },
     });
     if (post) await setRedisValue(getPostCacheKey(postId), post, 3600);
@@ -249,49 +233,7 @@ const postsService = {
     const post = await prisma.post.findUnique({
       where: { id: postId },
       select: {
-        id: true,
-        title: true,
-        content: true,
-        dislikesCount: true,
-        likesCount: true,
-        PostReactions: {
-          select: {
-            authorId: true,
-            reaction: true,
-          },
-        },
-        createdAt: true,
-        updatedAt: true,
-        author: {
-          select: {
-            id: true,
-            name: true,
-            avatar: true,
-          },
-        },
-        comments: {
-          select: {
-            id: true,
-            content: true,
-            createdAt: true,
-            updatedAt: true,
-            dislikesCount: true,
-            likesCount: true,
-            CommentReactions: {
-              select: {
-                authorId: true,
-                reaction: true,
-              },
-            },
-            author: {
-              select: {
-                id: true,
-                name: true,
-                avatar: true,
-              },
-            },
-          },
-        },
+        ...selectPostFields,
       },
     });
     if (post) await setRedisValue(getPostCacheKey(postId), post, 3600);

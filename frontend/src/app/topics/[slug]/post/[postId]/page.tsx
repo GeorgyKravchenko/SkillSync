@@ -8,10 +8,10 @@ import usePost from '@/hooks/post/usePost';
 import useCreateComment from '@/hooks/comment/useCreateComment';
 import { ICommentCreateDto } from '@/types/comment.types';
 import MarkdownContent from '@/components/ui/MarkDownContent';
-import CommentForm from '@/components/ui/CommentForm';
+import CommentForm from '@/components/ui/comment/CommentForm';
 import useAuthStore from '@/lib/store/user';
 import ReactionButtonGroupForPost from '@/components/ui/reactionButtons/ReactionButtonGroupForPost';
-import { CommentItem } from '@/components/ui/CommentItem';
+import { CommentItem } from '@/components/ui/comment/CommentItem';
 
 export default function PostPage() {
   const user = useAuthStore((state) => state.user);
@@ -59,9 +59,11 @@ export default function PostPage() {
       <section className="max-w-4xl mx-auto mt-16 bg-white dark:bg-gray-900 p-8 rounded-2xl shadow-lg border border-cyan-200 dark:border-cyan-700">
         <h2 className="text-2xl font-bold mb-6 text-cyan-800 dark:text-cyan-300">Коментарі</h2>
         <ul className="space-y-6">
-          {post.comments.map((comment) => (
-            <CommentItem key={comment.id} comment={comment} postId={+postId} />
-          ))}
+          {post.comments
+            .filter((c) => c.isReply === false)
+            .map((comment) => (
+              <CommentItem key={comment.id} comment={comment} postId={+postId} />
+            ))}
         </ul>
 
         <div className="mt-8">

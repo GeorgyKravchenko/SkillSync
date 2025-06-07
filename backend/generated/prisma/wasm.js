@@ -151,11 +151,13 @@ exports.Prisma.TopicScalarFieldEnum = {
 
 exports.Prisma.CommentScalarFieldEnum = {
   id: 'id',
+  isReply: 'isReply',
   content: 'content',
   postId: 'postId',
   authorId: 'authorId',
   likesCount: 'likesCount',
   dislikesCount: 'dislikesCount',
+  parentId: 'parentId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };

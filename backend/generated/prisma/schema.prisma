@@ -59,18 +59,23 @@ model Topic {
 }
 
 model Comment {
-  id            Int    @id @default(autoincrement())
+  id            Int     @id @default(autoincrement())
+  isReply       Boolean @default(false) @map("is_reply")
   content       String
-  postId        Int    @map("post_id")
-  authorId      Int    @map("author_id")
-  likesCount    Int    @default(0) @map("likes_count")
-  dislikesCount Int    @default(0) @map("dislikes_count")
+  postId        Int     @map("post_id")
+  authorId      Int     @map("author_id")
+  likesCount    Int     @default(0) @map("likes_count")
+  dislikesCount Int     @default(0) @map("dislikes_count")
 
   post             Post              @relation(fields: [postId], references: [id])
   author           User              @relation(fields: [authorId], references: [id])
-  createdAt        DateTime          @default(now()) @map("created_at")
-  updatedAt        DateTime          @updatedAt @map("updated_at")
   CommentReactions CommentReaction[]
+  parentId         Int?              @map("parent_id")
+  parent           Comment?          @relation("CommentReplies", fields: [parentId], references: [id])
+  replies          Comment[]         @relation("CommentReplies")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 }
 
 model PostReaction {

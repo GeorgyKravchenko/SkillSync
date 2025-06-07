@@ -6,4 +6,9 @@ export interface IReactionResponse {
 }
 export interface IReactionCommentResponse extends IReactionResponse {
   CommentReactions: Reaction[];
+  replies: {
+    likesCount: number;
+    dislikesCount: number;
+    CommentReactions: Reaction[];
+  };
 }

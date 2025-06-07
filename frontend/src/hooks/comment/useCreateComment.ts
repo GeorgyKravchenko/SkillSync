@@ -7,7 +7,8 @@ const useCreateComment = (postId: number) => {
   const { refetch } = usePost(postId);
   return useMutation({
     mutationKey: ['createComment'],
-    mutationFn: (data: ICommentCreateDto) => CommentService.createComment(data),
+    mutationFn: (data: ICommentCreateDto & { parentId?: number }) =>
+      CommentService.createComment(data),
     onSuccess: () => {
       refetch();
     },

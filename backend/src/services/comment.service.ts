@@ -2,12 +2,14 @@ import { Reaction } from '../../generated/prisma';
 import prisma from '../utils/prismaClient';
 
 const commentService = {
-  async createComment(content: string, authorId: number, postId: number) {
+  async createComment(content: string, authorId: number, postId: number, parentId?: number) {
     return await prisma.comment.create({
       data: {
         content,
         authorId,
         postId,
+        parentId,
+        isReply: parentId ? true : false,
       },
     });
   },
@@ -98,6 +100,16 @@ const commentService = {
           where: { authorId: userId },
           select: { reaction: true },
         },
+        replies: {
+          select: {
+            likesCount: true,
+            dislikesCount: true,
+            CommentReactions: {
+              where: { authorId: userId },
+              select: { reaction: true },
+            },
+          },
+        },
       },
     });
   },
@@ -174,6 +186,16 @@ const commentService = {
         CommentReactions: {
           where: { authorId: userId },
           select: { reaction: true },
+        },
+        replies: {
+          select: {
+            likesCount: true,
+            dislikesCount: true,
+            CommentReactions: {
+              where: { authorId: userId },
+              select: { reaction: true },
+            },
+          },
         },
       },
     });

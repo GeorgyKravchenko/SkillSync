@@ -7,6 +7,8 @@ export interface IComment extends ICommentCreateDto, BaseResponseData {
   likesCount: number;
   author: Pick<IUser, 'id' | 'name' | 'avatar'>;
   CommentReactions: IReaction[];
+  isReply: boolean;
+  replies: Omit<IComment, 'replies'>[];
 }
 
 export interface ICommentCreateDto {

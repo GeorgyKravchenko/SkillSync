@@ -4,7 +4,7 @@ import commentService from '../services/comment.service';
 const commentController = {
   createComment: async (req: Request, res: Response) => {
     try {
-      const { content, postId } = req.body;
+      const { content, postId, parentId } = req.body;
       const authorId = req.user?.id;
       if (isNaN(postId)) {
         res.status(400).json({ message: 'Invalid post ID' });
@@ -14,7 +14,7 @@ const commentController = {
         res.status(401).json({ message: 'Требуется аутентификация' });
         return;
       }
-      const comment = await commentService.createComment(content, authorId, postId);
+      const comment = await commentService.createComment(content, authorId, postId, parentId);
       res.status(201).json(comment);
     } catch (error) {
       res.status(500).json({ message: 'Error creating comment' });
