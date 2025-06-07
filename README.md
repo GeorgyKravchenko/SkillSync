@@ -74,8 +74,12 @@ NEXT_PUBLIC_API_URL=http://localhost:3001
 
 # В backend/.env
 DATABASE_URL="postgresql://..."
-JWT_SECRET="your-secret"
-CLOUDINARY_URL="your-cloudinary-url"
+PORT=4200
+JWT_SECRET=your_secret
+
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_cloud_api_key
+CLOUDINARY_API_SECRET=your_cloud_api_secret
 ```
 
 5. Запустіть розробку
@@ -135,7 +139,7 @@ npm run dev
 - [+] Створення функціоналу лайків/дізлайків
 - [+] Реалізація завантаження фото
 - [ ] Додавання відповідей на коментарі
-- [ ] Підключення редіс
+- [ ] Підключення Redis
 - [ ] Реалізація CI та CD
 
 ## 🤝 Внесок у Проект
@@ -148,7 +152,8 @@ npm run dev
 
 ## 👨‍💻 Автор
 
-Ваше Ім'я - [Ваше Портфоліо](https://your-portfolio.com)
+Кравченко Георгій 
+[LinkedIn](https://www.linkedin.com/in/%D0%B3%D0%B5%D0%BE%D1%80%D0%B3%D1%96%D0%B9-%D0%BA%D1%80%D0%B0%D0%B2%D1%87%D0%B5%D0%BD%D0%BA%D0%BE-108591367/)
 
 ---
 

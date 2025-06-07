@@ -4,9 +4,10 @@ import useTopic from '@/hooks/topic/useTopic';
 import Link from 'next/link';
 
 export default function HomePage() {
-  const { data: topics } = useTopic();
+  const { data: topics, isLoading } = useTopic();
+
   return (
-    <div className=" pt-24 min-h-screen transition-colors duration-500 bg-gradient-to-br from-cyan-100 to-blue-300 dark:from-cyan-900 dark:to-blue-900 text-gray-900 dark:text-white p-10 flex flex-col items-center justify-center font-sans relative">
+    <div className="pt-24 min-h-screen transition-colors duration-500 bg-gradient-to-br from-cyan-100 to-blue-300 dark:from-cyan-900 dark:to-blue-900 text-gray-900 dark:text-white p-10 flex flex-col items-center justify-center font-sans relative">
       <header className="mb-16 text-center">
         <h1 className="text-5xl font-extrabold mb-4 tracking-wide drop-shadow-[0_0_10px_cyan]">
           SkillsSync
@@ -42,8 +43,10 @@ export default function HomePage() {
       <section className="w-full max-w-6xl">
         <h2 className="text-3xl font-bold mb-6 text-center">Популярні теми</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 gap-4">
-          {topics &&
-            topics.map((topic) => (
+          {isLoading ? (
+            <div className="col-span-full text-center">Завантаження...</div>
+          ) : (
+            topics?.map((topic) => (
               <Link
                 href={`/topics/${topic.slug}`}
                 key={topic.slug}
@@ -51,7 +54,8 @@ export default function HomePage() {
               >
                 {topic.title}
               </Link>
-            ))}
+            ))
+          )}
         </div>
       </section>
     </div>

@@ -50,8 +50,11 @@ export default function Header() {
             />
           ) : (
             <div
-              className="w-10 h-10 rounded-full bg-cyan-200 dark:bg-cyan-800 flex items-center justify-center text-2xl text-cyan-700 dark:text-cyan-300 hover:scale-110 transition cursor-pointer"
-              onClick={() => router.push('/profile')}
+              className="cursor-pointer w-10 h-10 flex items-center justify-center rounded-full border border-cyan-400 dark:border-cyan-600 bg-white/20 dark:bg-white/10 hover:scale-110 transition text-cyan-700 dark:text-cyan-300"
+              title="Профіль"
+              onClick={() => {
+                router.push('/profile');
+              }}
             >
               {user?.name?.charAt(0).toUpperCase() || '👤'}
             </div>
