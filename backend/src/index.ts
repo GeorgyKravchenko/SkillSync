@@ -9,11 +9,12 @@ import cookieParser from 'cookie-parser';
 import postsRouter from './routes/posts.route';
 import topicRouter from './routes/topic.route';
 import commentRouter from './routes/comments.route';
-
-dotenv.config();
+import { redis } from './utils/redisClient';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+
+dotenv.config();
 
 app.use(cookieParser());
 app.use(
@@ -31,8 +32,9 @@ app.use('/api/posts', authMiddleware, postsRouter);
 app.use('/api/topics', authMiddleware, topicRouter);
 app.use('/api/comments', authMiddleware, commentRouter);
 
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
   console.log(`Server is running on http://localhost:${PORT}`);
+  await redis.flushdb();
 });
 
 export default app;
