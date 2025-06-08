@@ -1,9 +1,14 @@
 import { Reaction } from '../../generated/prisma';
 import prisma from '../utils/prismaClient';
+import { getRedisValue, redis, setRedisValue } from '../utils/redisClient';
+
+function getPostCacheKey(id: number) {
+  return `post:${id}`;
+}
 
 const commentService = {
   async createComment(content: string, authorId: number, postId: number, parentId?: number) {
-    return await prisma.comment.create({
+    const comment = await prisma.comment.create({
       data: {
         content,
         authorId,
@@ -12,19 +17,25 @@ const commentService = {
         isReply: parentId ? true : false,
       },
     });
+    await redis.del(getPostCacheKey(postId));
+    return comment;
   },
 
   async updateComment(content: string, id: number) {
-    return await prisma.comment.update({
+    const comment = await prisma.comment.update({
       where: { id },
       data: { content },
     });
+    await redis.del(getPostCacheKey(comment.postId));
+    return comment;
   },
 
   async deleteComment(id: number) {
-    return await prisma.comment.delete({
+    const comment = await prisma.comment.delete({
       where: { id },
     });
+    await redis.del(getPostCacheKey(comment.postId));
+    return comment;
   },
 
   async addLikeForComment(commentId: number, userId: number) {
@@ -91,9 +102,11 @@ const commentService = {
         });
       }
     }
-    return await prisma.comment.findUnique({
+
+    const comment = await prisma.comment.findUnique({
       where: { id: commentId },
       select: {
+        postId: true,
         likesCount: true,
         dislikesCount: true,
         CommentReactions: {
@@ -112,6 +125,87 @@ const commentService = {
         },
       },
     });
+
+    if (comment) {
+      const post = await prisma.post.findUnique({
+        where: { id: comment.postId },
+        select: {
+          id: true,
+          title: true,
+          content: true,
+          dislikesCount: true,
+          likesCount: true,
+          PostReactions: {
+            select: {
+              authorId: true,
+              reaction: true,
+            },
+          },
+          createdAt: true,
+          updatedAt: true,
+          author: {
+            select: {
+              id: true,
+              name: true,
+              avatar: true,
+            },
+          },
+          comments: {
+            select: {
+              id: true,
+              content: true,
+              isReply: true,
+              createdAt: true,
+              updatedAt: true,
+              dislikesCount: true,
+              likesCount: true,
+              CommentReactions: {
+                select: {
+                  authorId: true,
+                  reaction: true,
+                },
+              },
+              replies: {
+                select: {
+                  id: true,
+                  content: true,
+                  createdAt: true,
+                  updatedAt: true,
+                  dislikesCount: true,
+                  likesCount: true,
+                  CommentReactions: {
+                    select: {
+                      authorId: true,
+                      reaction: true,
+                    },
+                  },
+                  author: {
+                    select: {
+                      id: true,
+                      name: true,
+                      avatar: true,
+                    },
+                  },
+                },
+              },
+              author: {
+                select: {
+                  id: true,
+                  name: true,
+                  avatar: true,
+                },
+              },
+            },
+          },
+        },
+      });
+
+      if (post) {
+        await setRedisValue(getPostCacheKey(post.id), post, 3600);
+      }
+    }
+
+    return comment;
   },
 
   async addDisLikeForComment(commentId: number, userId: number) {
@@ -178,9 +272,11 @@ const commentService = {
         });
       }
     }
-    return await prisma.comment.findUnique({
+
+    const comment = await prisma.comment.findUnique({
       where: { id: commentId },
       select: {
+        postId: true,
         likesCount: true,
         dislikesCount: true,
         CommentReactions: {
@@ -199,6 +295,87 @@ const commentService = {
         },
       },
     });
+
+    if (comment) {
+      const post = await prisma.post.findUnique({
+        where: { id: comment.postId },
+        select: {
+          id: true,
+          title: true,
+          content: true,
+          dislikesCount: true,
+          likesCount: true,
+          PostReactions: {
+            select: {
+              authorId: true,
+              reaction: true,
+            },
+          },
+          createdAt: true,
+          updatedAt: true,
+          author: {
+            select: {
+              id: true,
+              name: true,
+              avatar: true,
+            },
+          },
+          comments: {
+            select: {
+              id: true,
+              content: true,
+              isReply: true,
+              createdAt: true,
+              updatedAt: true,
+              dislikesCount: true,
+              likesCount: true,
+              CommentReactions: {
+                select: {
+                  authorId: true,
+                  reaction: true,
+                },
+              },
+              replies: {
+                select: {
+                  id: true,
+                  content: true,
+                  createdAt: true,
+                  updatedAt: true,
+                  dislikesCount: true,
+                  likesCount: true,
+                  CommentReactions: {
+                    select: {
+                      authorId: true,
+                      reaction: true,
+                    },
+                  },
+                  author: {
+                    select: {
+                      id: true,
+                      name: true,
+                      avatar: true,
+                    },
+                  },
+                },
+              },
+              author: {
+                select: {
+                  id: true,
+                  name: true,
+                  avatar: true,
+                },
+              },
+            },
+          },
+        },
+      });
+
+      if (post) {
+        await setRedisValue(getPostCacheKey(post.id), post, 3600);
+      }
+    }
+
+    return comment;
   },
 };
 
