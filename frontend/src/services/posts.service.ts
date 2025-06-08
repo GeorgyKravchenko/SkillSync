@@ -3,8 +3,8 @@ import api from '@/utils/api';
 
 class PostsService {
   private static API_URL = '/posts';
-  static async getPosts() {
-    return await api.get<IPost[]>(`${this.API_URL}/`);
+  static async getPosts(skip: number = 0, limit: number = 10) {
+    return await api.get<IPost[]>(`${this.API_URL}?skip=${skip}&limit=${limit}`);
   }
   static async createPost(data: IPostCreateDto) {
     return await api.post(`${this.API_URL}/`, data);
@@ -26,6 +26,9 @@ class PostsService {
   }
   static async addDislikeForPost(postId: number) {
     return await api.post(`${this.API_URL}/${postId}/dislike`);
+  }
+  static async searchPosts(query: string, skip: number = 0, limit: number = 10) {
+    return await api.post<IPost[]>(`${this.API_URL}/search?q=${query}&skip=${skip}&limit=${limit}`);
   }
 }
 

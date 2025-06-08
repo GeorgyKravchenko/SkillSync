@@ -2,18 +2,20 @@
 
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
-import { formatDistanceToNow } from 'date-fns';
-import { uk } from 'date-fns/locale';
-import usePosts from '@/hooks/post/usePosts';
 import useTopic from '@/hooks/topic/useTopic';
+import { useState } from 'react';
+import SearchInput from '@/components/ui/SearchInput';
+import useSearchPosts from '@/hooks/post/useSearchPosts';
+import PostItem from '@/components/ui/PostItem';
 
 export default function TopicPage() {
   const { slug } = useParams() as { slug: string };
-
   const { data: topics } = useTopic();
-  const { data: posts } = usePosts(slug);
 
   const topic = topics?.find((t) => t.slug === slug);
+
+  const [search, setSearch] = useState('');
+  const { data: filteredPosts } = useSearchPosts(search.trim());
 
   if (!slug || !topic) return <div>Завантаження...</div>;
 
@@ -32,33 +34,22 @@ export default function TopicPage() {
             + Створити публікацію
           </Link>
         </div>
+
+        <SearchInput value={search} onChange={setSearch} />
       </header>
 
       <main className="max-w-5xl mx-auto space-y-12">
         <section>
           <h2 className="text-2xl font-bold mb-4">Останні публікації</h2>
-          <ul className="space-y-4">
-            {posts?.map((post) => (
-              <li
-                key={post.id}
-                className="p-4 rounded-xl border border-cyan-300 dark:border-cyan-700 bg-white dark:bg-gray-800 shadow-sm hover:shadow-lg transition"
-              >
-                <Link href={`/topics/${slug}/post/${post.id}`}>
-                  <h3 className="text-xl font-semibold text-cyan-700 dark:text-cyan-300 hover:underline">
-                    {post.title}
-                  </h3>
-                </Link>
-                <p className="text-sm text-muted-foreground">
-                  Автор: {post.author.name} •{' '}
-                  {formatDistanceToNow(new Date(post.createdAt), {
-                    addSuffix: true,
-                    locale: uk,
-                  })}
-                </p>
-                <p className="mt-2 text-cyan-900 dark:text-cyan-200">{post.content}</p>
-              </li>
-            ))}
-          </ul>
+          {filteredPosts && filteredPosts.length > 0 ? (
+            <ul className="space-y-4">
+              {filteredPosts.map((post) => (
+                <PostItem key={post.id} post={post} slug={slug} />
+              ))}
+            </ul>
+          ) : (
+            <p className="text-gray-600 dark:text-gray-400">Публікацій не знайдено.</p>
+          )}
         </section>
       </main>
     </div>

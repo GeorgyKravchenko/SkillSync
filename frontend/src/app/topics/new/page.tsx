@@ -4,6 +4,7 @@ import BaseButton from '@/components/ui/BaseButton';
 import useCreatePost from '@/hooks/post/useCreatePost';
 import useTopic from '@/hooks/topic/useTopic';
 import { IPostCreateDto } from '@/types/post.types';
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 
 export default function NewPostPage() {
@@ -12,9 +13,13 @@ export default function NewPostPage() {
     handleSubmit,
     formState: { errors },
   } = useForm<IPostCreateDto>();
+  const router = useRouter();
   const { mutate } = useCreatePost();
   const { data: topics } = useTopic();
-  const onSubmit = (data: IPostCreateDto) => mutate(data);
+  const onSubmit = (data: IPostCreateDto) => {
+    mutate(data);
+    router.back();
+  };
   return (
     <main className="min-h-screen bg-gradient-to-br from-cyan-50 to-blue-100 dark:from-gray-900 dark:to-gray-950 text-gray-900 dark:text-white p-4 sm:p-8 font-sans">
       <div className="max-w-2xl mx-auto pt-16 sm:pt-20">
