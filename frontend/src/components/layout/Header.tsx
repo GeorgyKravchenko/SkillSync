@@ -24,10 +24,10 @@ export default function Header() {
           <Link href="/" className="hover:text-cyan-500 transition">
             Головна
           </Link>
-          <Link href="/skills" className="hover:text-cyan-500 transition">
+          <Link href="/" className="hover:text-cyan-500 transition">
             Навички
           </Link>
-          <Link href="/contacts" className="hover:text-cyan-500 transition">
+          <Link href="/" className="hover:text-cyan-500 transition">
             Контакти
           </Link>
         </nav>

@@ -12,7 +12,7 @@ import commentRouter from './routes/comments.route';
 import { redis } from './utils/redisClient';
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 4200;
 
 dotenv.config();
 
