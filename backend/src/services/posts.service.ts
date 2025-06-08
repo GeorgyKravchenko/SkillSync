@@ -238,6 +238,26 @@ const postsService = {
     });
     if (post) await setRedisValue(getPostCacheKey(postId), post, 3600);
   },
+  async searchPosts(query: string, skip: number = 0, limit: number = 10) {
+    if (!query || query.trim() === '') {
+      throw new Error('Query cannot be empty');
+    }
+    const posts = await prisma.post.findMany({
+      where: {
+        OR: [
+          { title: { contains: query, mode: 'insensitive' } },
+          { content: { contains: query, mode: 'insensitive' } },
+        ],
+      },
+      select: {
+        ...selectPostFields,
+      },
+      take: limit,
+      skip,
+    });
+
+    return posts;
+  },
 };
 
 export default postsService;

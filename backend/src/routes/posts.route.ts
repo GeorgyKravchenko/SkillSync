@@ -10,5 +10,5 @@ postsRouter.put('/:id', postsController.updatePost);
 postsRouter.delete('/:id', postsController.deletePost);
 postsRouter.post('/:id/like', postsController.addLikeForPost);
 postsRouter.post('/:id/dislike', postsController.addDislikeForPost);
-
+postsRouter.post('/search', postsController.searchPosts);
 export default postsRouter;

@@ -148,5 +148,21 @@ const postsController = {
       res.status(500).json({ message: 'Ошибка сервера при добавлении дизлайка к посту' });
     }
   },
+  searchPosts: async (req: Request, res: Response) => {
+    try {
+      const query = req.query.q as string;
+      const skip = parseInt(req.query.skip as string) || 0;
+      const limit = parseInt(req.query.limit as string) || 10;
+      if (!query) {
+        res.status(400).json({ message: 'Параметр поиска не указан' });
+        return;
+      }
+      const posts = await postsService.searchPosts(query, skip, limit);
+      res.status(200).json(posts);
+    } catch (error) {
+      console.error('Ошибка при поиске постов:', error);
+      res.status(500).json({ message: 'Ошибка сервера при поиске постов' });
+    }
+  },
 };
 export default postsController;
